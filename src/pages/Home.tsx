@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { TestimonialMarquee } from "../components/TestimonialMarquee";
 import { BeforeAfterSlider } from "../components/BeforeAfterSlider";
 import { useTranslation } from "react-i18next";
+import { useRef, useState } from "react";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -22,6 +23,54 @@ const staggerContainer = {
 
 export default function Home() {
   const { t } = useTranslation();
+  const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
+  const thumbnailPrepared = useRef<Set<number>>(new Set());
+  const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
+
+  const handleVideoLoadedData = (id: number) => {
+    const video = videoRefs.current[id];
+    if (!video || thumbnailPrepared.current.has(id)) {
+      return;
+    }
+
+    // Seek to 1 second once so that frame is used as the thumbnail preview.
+    thumbnailPrepared.current.add(id);
+    video.currentTime = 1;
+    video.pause();
+  };
+
+  const handleVideoClick = async (id: number) => {
+    const selectedVideo = videoRefs.current[id];
+    if (!selectedVideo) {
+      return;
+    }
+
+    for (const key in videoRefs.current) {
+      const keyAsNumber = Number(key);
+      const video = videoRefs.current[keyAsNumber];
+      if (!video || keyAsNumber === id) {
+        continue;
+      }
+      video.pause();
+      if (thumbnailPrepared.current.has(keyAsNumber)) {
+        video.currentTime = 1;
+      }
+    }
+
+    if (selectedVideo.paused) {
+      selectedVideo.currentTime = 0;
+      try {
+        await selectedVideo.play();
+        setActiveVideoId(id);
+      } catch {
+        setActiveVideoId(null);
+      }
+    } else {
+      selectedVideo.pause();
+      selectedVideo.currentTime = 1;
+      setActiveVideoId(null);
+    }
+  };
 
   return (
     <div>
@@ -125,15 +174,17 @@ export default function Home() {
                 key={vid.id}
                 variants={fadeInUp}
                 className="relative rounded-[2rem] overflow-hidden aspect-[9/16] group cursor-pointer border border-white/10 shadow-2xl"
+                onClick={() => handleVideoClick(vid.id)}
               >
                 <video
                   src={vid.src}
+                  ref={(el: HTMLVideoElement | null) => {
+                    videoRefs.current[vid.id] = el;
+                  }}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  autoPlay
-                  loop
-                  muted
                   playsInline
-                  preload="metadata"
+                  preload="auto"
+                  onLoadedData={() => handleVideoLoadedData(vid.id)}
                 />
                 
                 {/* Dark Overlay */}
@@ -154,6 +205,16 @@ export default function Home() {
                     {t('home.video.viewInstagram')}
                   </span>
                 </div>
+
+                {activeVideoId !== vid.id && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300">
+                      <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                )}
 
               </motion.div>
             ))}
