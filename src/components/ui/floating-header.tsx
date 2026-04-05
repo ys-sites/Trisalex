@@ -45,7 +45,7 @@ export function FloatingHeader() {
 					<img 
 						src="/logo.png" 
 						alt="Trisalex Logo" 
-						className="h-10 w-auto object-contain" 
+						className="h-12 w-auto object-contain" 
 						onError={(e) => {
 							e.currentTarget.style.display = 'none';
 							e.currentTarget.nextElementSibling?.classList.remove('hidden');

@@ -68,7 +68,7 @@ export default function Layout() {
                 <img 
                   src="/logo.png" 
                   alt="Trisalex Logo" 
-                  className="h-16 w-auto object-contain" 
+                  className="h-[4.5rem] w-auto object-contain" 
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                     e.currentTarget.nextElementSibling?.classList.remove('hidden');
