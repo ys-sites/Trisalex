@@ -1,0 +1,105 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "contact": "Contact",
+    "followUs": "Follow us",
+    "getQuote": "Get a Quote",
+    "getFreeQuote": "Get a Free Quote"
+  },
+  "footer": {
+    "description": "Professional high-end interior painting and exterior spray painting for homes across Montreal and the West Island. Family owned and operated for over 25 years.",
+    "quickLinks": "Quick Links",
+    "contactUs": "Contact Us",
+    "rights": "All rights reserved.",
+    "googleRated": "Google Rated"
+  },
+  "home": {
+    "hero": {
+      "title1": "Flawless Finishes.",
+      "title2": "Lasting Impressions.",
+      "subtitle": "High-end interior painting and exterior spray painting. Family owned and operated for over 25 years. We deliver flawless results that last.",
+      "getQuote": "Get a Free Quote",
+      "ourServices": "Our Services",
+      "trust": "Professional Consultation • No commitment • Fast response"
+    },
+    "video": {
+      "follow": "Follow our journey",
+      "title": "See Our Work in Action",
+      "subtitle": "Get a behind-the-scenes look at how we transform spaces across Montreal.",
+      "viewInstagram": "View on Instagram"
+    },
+    "features": {
+      "prep": "Flawless Preparation",
+      "prepDesc": "We include drywall repairs and plastering to ensure a perfect finish."
+    },
+    "services": {
+      "title": "Our Painting Services",
+      "subtitle": "We specialize in transforming homes with premium paints and meticulous attention to detail.",
+      "interior": "Interior Painting",
+      "interiorDesc": "High-end interior painting that breathes new life into your living spaces. We handle everything from walls and ceilings to trim and doors.",
+      "premiumPaints": "Premium quality paints",
+      "furniture": "Furniture protection",
+      "clean": "Clean & tidy workspace",
+      "learnMore": "Learn more",
+      "exterior": "Exterior Spray Painting",
+      "exteriorDesc": "Transform your home's exterior with our specialized spray painting service for brick, aluminum, and vinyl siding.",
+      "factory": "Factory-like finish",
+      "weather": "Weather-resistant",
+      "curbAppeal": "Boosts curb appeal"
+    },
+    "process": {
+      "tag": "How It Works",
+      "title": "Our Simple 3-Step Process",
+      "subtitle": "We've streamlined our process to make your painting project as stress-free as possible.",
+      "step1": "Request a Quote",
+      "step1Desc": "Fill out the form below. We'll review your details and contact you within 24 hours.",
+      "step2": "Get a Clear Plan",
+      "step2Desc": "We provide a transparent proposal with exact timelines, materials, and pricing. No guesswork.",
+      "step3": "Enjoy the Result",
+      "step3Desc": "Our team executes flawlessly, cleans up completely, and does a final walkthrough to ensure 100% satisfaction."
+    },
+    "whyUs": {
+      "title": "Why choose Trisalex",
+      "subtitle": "A service designed for demanding customers",
+      "desc": "At Trisalex, we don't just paint walls. We deliver well-managed projects, executed on time and with constant attention to detail:",
+      "point1": "95% of projects delivered on time",
+      "point2": "Standardized and proven painting process",
+      "point3": "Clean and organized work sites",
+      "point4": "Structured and professional team",
+      "goalLabel": "Our goal:",
+      "goalDesc": "to offer you complete peace of mind, from the first contact to the final delivery.",
+      "getQuote": "Get a Quote"
+    },
+    "portfolio": {
+      "title": "Our Recent Work",
+      "subtitle": "Drag the slider to see the transformation.",
+      "seeMore": "See More Projects"
+    },
+    "testimonials": {
+      "title": "Don't Take Our Word for it",
+      "subtitle": "See what our clients have to say about us."
+    },
+    "cta": {
+      "title": "Ready to transform your home?",
+      "subtitle": "Contact Trisalex today for a free, no-obligation quote. We proudly serve Montreal and the West Island.",
+      "button": "Get Your Free Quote"
+    },
+    "contact": {
+      "fullName": "Full Name * *",
+      "phoneNumber": "Phone Number * *",
+      "emailAddress": "Email Address * *",
+      "city": "City * *",
+      "serviceNeeded": "What do you need painted? * *",
+      "selectService": "Select a service...",
+      "projectDetails": "Project Details (Optional) (Optional)",
+      "detailsPlaceholder": "Rough square footage, timeline, or specific problems you want solved...",
+      "submit": "Request Free Quote",
+      "secure": "Your information is secure and will never be shared.",
+      "commercial": "Commercial Painting",
+      "other": "Other"
+    }
+  }
+}

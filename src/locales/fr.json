@@ -1,0 +1,105 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "portfolio": "Réalisations",
+    "contact": "Contact",
+    "followUs": "Suivez-nous",
+    "getQuote": "Obtenir une soumission",
+    "getFreeQuote": "Soumission gratuite"
+  },
+  "footer": {
+    "description": "Peinture intérieure haut de gamme et peinture extérieure au pistolet pour les maisons à travers Montréal et l'Ouest-de-l'Île. Entreprise familiale depuis plus de 25 ans.",
+    "quickLinks": "Liens rapides",
+    "contactUs": "Nous joindre",
+    "rights": "Tous droits réservés.",
+    "googleRated": "Évalué sur Google"
+  },
+  "home": {
+    "hero": {
+      "title1": "Finitions Impeccables.",
+      "title2": "Impressions Durables.",
+      "subtitle": "Peinture intérieure haut de gamme et peinture extérieure au pistolet. Entreprise familiale depuis plus de 25 ans. Nous offrons des résultats impeccables qui durent.",
+      "getQuote": "Obtenez une soumission gratuite",
+      "ourServices": "Nos Services",
+      "trust": "Consultation professionnelle • Sans engagement • Réponse rapide"
+    },
+    "video": {
+      "follow": "Suivez notre parcours",
+      "title": "Voyez notre travail en action",
+      "subtitle": "Découvrez les coulisses de la transformation d'espaces à travers Montréal.",
+      "viewInstagram": "Voir sur Instagram"
+    },
+    "features": {
+      "prep": "Préparation Impeccable",
+      "prepDesc": "Nous incluons les réparations de cloisons sèches et le plâtrage pour assurer une finition parfaite."
+    },
+    "services": {
+      "title": "Nos services de peinture",
+      "subtitle": "Nous nous spécialisons dans la transformation de maisons avec des peintures haut de gamme et une attention méticuleuse aux détails.",
+      "interior": "Peinture Intérieure",
+      "interiorDesc": "Peinture intérieure haut de gamme qui redonne vie à vos espaces de vie. Nous nous occupons de tout, des murs et plafonds aux moulures et portes.",
+      "premiumPaints": "Peintures de qualité supérieure",
+      "furniture": "Protection des meubles",
+      "clean": "Espace de travail propre et ordonné",
+      "learnMore": "En savoir plus",
+      "exterior": "Peinture Extérieure au Pistolet",
+      "exteriorDesc": "Transformez l'extérieur de votre maison avec notre service spécialisé de peinture au pistolet pour la brique, l'aluminium et le revêtement de vinyle.",
+      "factory": "Finition de type usine",
+      "weather": "Résistant aux intempéries",
+      "curbAppeal": "Améliore l'attrait visuel"
+    },
+    "process": {
+      "tag": "Comment ça fonctionne",
+      "title": "Notre processus simple en 3 étapes",
+      "subtitle": "Nous avons simplifié notre processus pour rendre votre projet de peinture aussi peu stressant que possible.",
+      "step1": "Demander une soumission",
+      "step1Desc": "Remplissez le formulaire ci-dessous. Nous examinerons vos détails et vous contacterons dans les 24 heures.",
+      "step2": "Obtenez un plan clair",
+      "step2Desc": "Nous fournissons une proposition transparente avec des délais, des matériaux et des prix exacts. Aucune devinette.",
+      "step3": "Profitez du résultat",
+      "step3Desc": "Notre équipe exécute parfaitement, nettoie complètement et effectue une visite finale pour garantir une satisfaction à 100 %."
+    },
+    "whyUs": {
+      "title": "Pourquoi choisir Trisalex",
+      "subtitle": "Un service conçu pour des clients exigeants",
+      "desc": "Chez Trisalex, nous ne faisons pas que peindre des murs. Nous livrons des projets bien gérés, exécutés à temps et avec une attention constante aux détails :",
+      "point1": "95% des projets livrés à temps",
+      "point2": "Processus de peinture standardisé et éprouvé",
+      "point3": "Chantiers propres et organisés",
+      "point4": "Équipe structurée et professionnelle",
+      "goalLabel": "Notre objectif :",
+      "goalDesc": "vous offrir une tranquillité d'esprit totale, du premier contact à la livraison finale.",
+      "getQuote": "Obtenir une soumission"
+    },
+    "portfolio": {
+      "title": "Nos réalisations récentes",
+      "subtitle": "Faites glisser le curseur pour voir la transformation.",
+      "seeMore": "Voir plus de projets"
+    },
+    "testimonials": {
+      "title": "Ne nous croyez pas sur parole",
+      "subtitle": "Voyez ce que nos clients disent de nous."
+    },
+    "cta": {
+      "title": "Prêt à transformer votre maison ?",
+      "subtitle": "Contactez Trisalex dès aujourd'hui pour une soumission gratuite et sans obligation. Nous desservons fièrement Montréal et l'Ouest-de-l'Île.",
+      "button": "Obtenez votre soumission gratuite"
+    },
+    "contact": {
+      "fullName": "Nom complet * *",
+      "phoneNumber": "Numéro de téléphone * *",
+      "emailAddress": "Adresse courriel * *",
+      "city": "Ville * *",
+      "serviceNeeded": "Que voulez-vous faire peindre ? * *",
+      "selectService": "Sélectionnez un service...",
+      "projectDetails": "Détails du projet (Optionnel) (Optionnel)",
+      "detailsPlaceholder": "Superficie approximative, échéancier ou problèmes spécifiques que vous souhaitez résoudre...",
+      "submit": "Demander une soumission gratuite",
+      "secure": "Vos informations sont sécurisées et ne seront jamais partagées.",
+      "commercial": "Peinture commerciale",
+      "other": "Autre"
+    }
+  }
+}

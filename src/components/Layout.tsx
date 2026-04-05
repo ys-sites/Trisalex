@@ -1,0 +1,133 @@
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { Phone, Mail, MapPin, Menu, X, Paintbrush, Instagram } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { cn } from "../lib/utils";
+import { FloatingHeader } from "./ui/floating-header";
+import { useTranslation } from "react-i18next";
+
+export default function Layout() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: t('nav.home'), path: "/" },
+    { name: t('nav.about'), path: "/about" },
+    { name: t('nav.services'), path: "/services" },
+    { name: t('nav.portfolio'), path: "/portfolio" },
+    { name: t('nav.contact'), path: "/contact" },
+  ];
+
+  return (
+    <div className="min-h-screen flex flex-col font-sans text-gray-900 bg-gray-50">
+      {/* Top Bar */}
+      <div className="bg-blue-900 text-white py-2 text-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
+          <div className="flex items-center space-x-4 mb-2 sm:mb-0">
+            <span className="flex items-center"><Phone className="w-4 h-4 mr-2" /> (514) 707-6123</span>
+            <span className="hidden md:flex items-center flex-wrap"><MapPin className="w-4 h-4 mr-2" /> Montreal &nbsp;&nbsp;&bull;&nbsp;&nbsp; West Island &nbsp;&nbsp;&bull;&nbsp;&nbsp; Laval &nbsp;&nbsp;&bull;&nbsp;&nbsp; South Shore &nbsp;&nbsp;&bull;&nbsp;&nbsp; North Shore &nbsp;&nbsp;&bull;&nbsp;&nbsp; Vaudreuil &nbsp;&nbsp;&bull;&nbsp;&nbsp; Brossard &nbsp;&nbsp;&bull;&nbsp;&nbsp; Longueuil &nbsp;&nbsp;&bull;&nbsp;&nbsp; Terrebonne &nbsp;&nbsp;&bull;&nbsp;&nbsp; Blainville</span>
+          </div>
+          <div className="flex items-center">
+            <a href="https://www.instagram.com/trisalexpainting/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200 transition-colors flex items-center">
+              <Instagram className="w-4 h-4 mr-1" />
+              <span className="hidden sm:inline">{t('nav.followUs')}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <div className="w-full h-0 sticky top-0 z-50">
+        <div className="w-full px-4 pt-4">
+          <FloatingHeader />
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <main className={cn("flex-grow", !isHome && "pt-8")}>
+        <Outlet />
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 pt-16 pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <div>
+              <div className="flex items-center mb-6">
+                <img 
+                  src="/logo.png" 
+                  alt="Trisalex Logo" 
+                  className="h-16 w-auto object-contain" 
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
+                <div className="hidden items-center">
+                  <Paintbrush className="h-8 w-8 text-blue-600 mr-2" />
+                  <span className="font-bold text-2xl tracking-tight text-gray-900">Trisalex</span>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-6">
+                {t('footer.description')}
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-6">{t('footer.quickLinks')}</h3>
+              <ul className="space-y-3">
+                {navLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link to={link.path} className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-6">{t('footer.contactUs')}</h3>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-1 flex-shrink-0" />
+                  <span className="text-gray-600 font-medium">20 Rue du Curé-Trottier<br />Kirkland, QC H9J 1K4</span>
+                </li>
+                <li className="flex items-center">
+                  <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                  <span className="text-gray-600 font-medium">(514) 707-6123</span>
+                </li>
+                <li className="flex items-center">
+                  <Instagram className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                  <a href="https://www.instagram.com/trisalexpainting/" target="_blank" rel="noopener noreferrer" className="text-gray-600 font-medium hover:text-blue-600 transition-colors">
+                    @trisalexpainting
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-500 text-sm mb-4 md:mb-0 font-medium">
+              &copy; {new Date().getFullYear()} Trisalex. {t('footer.rights')}
+            </p>
+            <div className="flex space-x-4">
+              <span className="bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 rounded-md text-sm font-bold">5.0 ⭐ {t('footer.googleRated')}</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
