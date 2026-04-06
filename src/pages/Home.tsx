@@ -597,19 +597,19 @@ export default function Home() {
             
             <ul className="space-y-4 mb-10">
               <li className="flex items-center text-gray-300">
-                <div className="w-2 h-2 rounded-full bg-[#ef4444] mr-4"></div>
+                <div className="w-2 h-2 rounded-full bg-[#4278c4] mr-4"></div>
                 {t('home.whyUs.point1')}
               </li>
               <li className="flex items-center text-gray-300">
-                <div className="w-2 h-2 rounded-full bg-[#ef4444] mr-4"></div>
+                <div className="w-2 h-2 rounded-full bg-[#4278c4] mr-4"></div>
                 {t('home.whyUs.point2')}
               </li>
               <li className="flex items-center text-gray-300">
-                <div className="w-2 h-2 rounded-full bg-[#ef4444] mr-4"></div>
+                <div className="w-2 h-2 rounded-full bg-[#4278c4] mr-4"></div>
                 {t('home.whyUs.point3')}
               </li>
               <li className="flex items-center text-gray-300">
-                <div className="w-2 h-2 rounded-full bg-[#ef4444] mr-4"></div>
+                <div className="w-2 h-2 rounded-full bg-[#4278c4] mr-4"></div>
                 {t('home.whyUs.point4')}
               </li>
             </ul>
@@ -621,7 +621,7 @@ export default function Home() {
             <div>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center bg-[#ef4444] text-white font-bold py-3 px-8 rounded-full hover:bg-[#dc2626] transition-colors duration-200 shadow-lg"
+                className="inline-flex items-center justify-center bg-[#4278c4] text-white font-bold py-3 px-8 rounded-full hover:bg-[#2e5da0] transition-colors duration-200 shadow-lg"
               >
                 {t('home.whyUs.getQuote')} <ArrowRight className="ml-2 w-5 h-5" />
               </Link>

@@ -82,7 +82,7 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <motion.h1 
-            className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6"
+            className="text-3xl md:text-6xl font-extrabold text-gray-900 mb-6"
           >
             {t('nav.contact')}
           </motion.h1>
