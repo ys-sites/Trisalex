@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { TestimonialMarquee } from "../components/TestimonialMarquee";
 import { BeforeAfterSlider } from "../components/BeforeAfterSlider";
 import { useTranslation } from "react-i18next";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -34,6 +34,7 @@ export default function Home() {
   const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
   const [mobileVideoIndex, setMobileVideoIndex] = useState(0);
+  const [videoThumbnails, setVideoThumbnails] = useState<Record<number, string>>({});
 
   const videoItems: VideoItem[] = [
     { id: 1, title: "Trisalex Painting", src: "/vid1.mp4", poster: "/after1.jpg" },
@@ -41,18 +42,85 @@ export default function Home() {
     { id: 3, title: "Trisalex Painting", src: "/vid3.mp4", poster: "/after4.png" }
   ];
 
+  useEffect(() => {
+    let cancelled = false;
+
+    const createThumbnail = (item: VideoItem) => new Promise<string | null>((resolve) => {
+      const tempVideo = document.createElement("video");
+      tempVideo.src = item.src;
+      tempVideo.preload = "auto";
+      tempVideo.muted = true;
+      tempVideo.playsInline = true;
+
+      const cleanup = () => {
+        tempVideo.pause();
+        tempVideo.removeAttribute("src");
+        tempVideo.load();
+      };
+
+      const captureFrame = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = tempVideo.videoWidth || 720;
+        canvas.height = tempVideo.videoHeight || 1280;
+        const context = canvas.getContext("2d");
+        if (!context) {
+          cleanup();
+          resolve(null);
+          return;
+        }
+
+        context.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
+        const thumbnail = canvas.toDataURL("image/jpeg", 0.82);
+        cleanup();
+        resolve(thumbnail);
+      };
+
+      tempVideo.addEventListener("error", () => {
+        cleanup();
+        resolve(null);
+      }, { once: true });
+
+      tempVideo.addEventListener("loadedmetadata", () => {
+        const targetTime = Number.isFinite(tempVideo.duration) && tempVideo.duration > 1 ? 1 : 0;
+
+        if (targetTime === 0) {
+          captureFrame();
+          return;
+        }
+
+        tempVideo.addEventListener("seeked", captureFrame, { once: true });
+        tempVideo.currentTime = targetTime;
+      }, { once: true });
+
+      tempVideo.load();
+    });
+
+    Promise.all(videoItems.map(async (item) => ({
+      id: item.id,
+      thumbnail: await createThumbnail(item)
+    }))).then((results) => {
+      if (cancelled) {
+        return;
+      }
+
+      const nextThumbnails = results.reduce<Record<number, string>>((accumulator, result) => {
+        if (result.thumbnail) {
+          accumulator[result.id] = result.thumbnail;
+        }
+        return accumulator;
+      }, {});
+
+      setVideoThumbnails(nextThumbnails);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const resetVideoToStart = (video: HTMLVideoElement) => {
     video.pause();
     video.currentTime = 0;
-  };
-
-  const handleVideoLoadedData = (id: number) => {
-    const video = videoRefs.current[id];
-    if (!video || activeVideoId === id) {
-      return;
-    }
-
-    resetVideoToStart(video);
   };
 
   const handleVideoClick = async (id: number) => {
@@ -106,7 +174,10 @@ export default function Home() {
     setMobileVideoIndex((prev: number) => (prev + 1) % videoItems.length);
   };
 
-  const renderVideoCard = (vid: VideoItem, refId: number, isMobile = false) => (
+  const renderVideoCard = (vid: VideoItem, refId: number, isMobile = false) => {
+    const thumbnailSrc = videoThumbnails[vid.id] ?? vid.poster;
+
+    return (
     <motion.div
       key={`${refId}-${vid.id}`}
       variants={fadeInUp}
@@ -119,17 +190,24 @@ export default function Home() {
         ref={(el: HTMLVideoElement | null) => {
           videoRefs.current[refId] = el;
         }}
-        className={`block w-full h-full object-cover bg-black ${isMobile ? "" : "transition-transform duration-700 group-hover:scale-105"}`}
+        className={`block w-full h-full object-cover bg-black transition-opacity duration-300 ${isMobile ? "" : "transition-transform duration-700 group-hover:scale-105"} ${activeVideoId === refId ? "opacity-100" : "opacity-0"}`}
         controls={isMobile && activeVideoId === refId}
         playsInline
         preload={isMobile ? "metadata" : "auto"}
-        onLoadedData={() => handleVideoLoadedData(refId)}
         onPlay={() => setActiveVideoId(refId)}
         onPause={() => {
           setActiveVideoId((current) => (current === refId ? null : current));
         }}
         style={{ WebkitTransform: "translateZ(0)", backfaceVisibility: "hidden" }}
       />
+
+      {activeVideoId !== refId && (
+        <img
+          src={thumbnailSrc}
+          alt={`${vid.title} thumbnail`}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      )}
 
       {/* Dark Overlay */}
       <div className={`absolute inset-0 transition-colors duration-300 ${activeVideoId === refId ? "bg-transparent" : "bg-black/20 group-hover:bg-black/10"}`}></div>
@@ -160,7 +238,8 @@ export default function Home() {
         </div>
       )}
     </motion.div>
-  );
+    );
+  };
 
   return (
     <div>
