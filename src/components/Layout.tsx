@@ -150,6 +150,12 @@ export default function Layout() {
                     <span className="text-gray-600 font-medium">{phoneNumber}</span>
                   </li>
                   <li className="flex items-center">
+                    <Mail className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                    <a href="mailto:trisalexpainting@gmail.com" className="text-gray-600 font-medium hover:text-blue-600 transition-colors">
+                      trisalexpainting@gmail.com
+                    </a>
+                  </li>
+                  <li className="flex items-center">
                     <Instagram className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
                     <a href="https://www.instagram.com/trisalexpainting/" target="_blank" rel="noopener noreferrer" className="text-gray-600 font-medium hover:text-blue-600 transition-colors">
                       @trisalexpainting

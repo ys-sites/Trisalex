@@ -1,6 +1,6 @@
 import { useState, FormEvent } from "react";
 import { motion } from "motion/react";
-import { Phone, MapPin, Clock, Mail, ArrowRight, ShieldCheck, CheckCircle2, Loader2 } from "lucide-react";
+import { ArrowRight, ShieldCheck, CheckCircle2, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export default function Contact() {
@@ -91,50 +91,29 @@ export default function Contact() {
           >
             {t('home.cta.subtitle')}
           </motion.p>
-        </motion.div>
+          <motion.a
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            href="mailto:trisalexpainting@gmail.com"
+            className="inline-block mt-4 text-blue-700 font-semibold hover:text-blue-800 transition-colors"
+          >
+            trisalexpainting@gmail.com
+          </motion.a>
+        </div>
 
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start"
+          className="max-w-4xl mx-auto"
         >
-          {/* Contact Info Cards */}
-          <motion.div
-            variants={fadeInUp}
-            className="lg:col-span-1 space-y-6"
-          >
-            <div className="bg-[#fffdf8]/92 p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-[#fffaf0]/80">
-              <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
-                <Phone className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{t('footer.contactUs')}</h3>
-              <p className="text-gray-600 font-medium">(514) 707-6123</p>
-            </div>
-
-            <div className="bg-[#fffdf8]/92 p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-[#fffaf0]/80">
-              <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
-                <MapPin className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Location</h3>
-              <p className="text-gray-600 font-medium">20 Rue du Curé-Trottier<br/>Kirkland, QC H9J 1K4</p>
-            </div>
-
-            <div className="bg-[#fffdf8]/92 p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-[#fffaf0]/80">
-              <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
-                <Clock className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Hours</h3>
-              <p className="text-gray-600 font-medium">Mon - Fri: 8AM - 6PM<br/>Sat: 9AM - 2PM</p>
-            </div>
-          </motion.div>
-
-          {/* Contact Form */}
           <motion.div
             variants={fadeInUp}
             id="contact-form"
-            className="lg:col-span-2 bg-[#fffdf8]/94 rounded-3xl shadow-[0_32px_80px_rgba(148,163,184,0.22)] p-8 md:p-12 border border-[#fffaf0]/90"
+            className="bg-[#fffdf8]/94 rounded-3xl shadow-[0_32px_80px_rgba(148,163,184,0.22)] p-8 md:p-12 border border-[#fffaf0]/90"
+          >
           >
             {isSuccess ? (
               <motion.div 
