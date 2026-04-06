@@ -72,7 +72,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="relative min-h-screen pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-white">
+    <div className="relative min-h-screen pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-[#f7f3eb]">
       <div className="absolute inset-0 z-0 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 auto-rows-fr gap-0 group/contact">
         {gridImages.map((src, index) => (
           <div key={index} className="relative aspect-square overflow-hidden">
@@ -81,12 +81,12 @@ export default function Contact() {
               alt=""
               className="h-full w-full object-cover scale-[1.03] opacity-70 brightness-105 saturate-90 transition-all duration-500 ease-out group-hover/contact:opacity-55 hover:!scale-110 hover:!opacity-100 hover:!brightness-100 hover:!saturate-100"
             />
-            <div className="pointer-events-none absolute inset-0 bg-white/12 transition-opacity duration-500 group-hover/contact:bg-white/20 hover:!bg-transparent"></div>
+            <div className="pointer-events-none absolute inset-0 bg-[#f7f3eb]/20 transition-opacity duration-500 group-hover/contact:bg-[#f7f3eb]/28 hover:!bg-transparent"></div>
           </div>
         ))}
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-white/18"></div>
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[#f7f3eb]/38"></div>
       <div className="pointer-events-none absolute inset-0 z-[2] bg-[linear-gradient(to_right,rgba(46,93,160,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(46,93,160,0.04)_1px,transparent_1px)] bg-[size:92px_92px]"></div>
 
       <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -116,7 +116,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-1 space-y-6"
           >
-            <div className="bg-white/92 p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-white/80">
+            <div className="bg-[#fffdf8]/92 p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-[#fffaf0]/80">
               <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
                 <Phone className="w-6 h-6" />
               </div>
@@ -124,7 +124,7 @@ export default function Contact() {
               <p className="text-gray-600 font-medium">(514) 707-6123</p>
             </div>
 
-            <div className="bg-white/92 p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-white/80">
+            <div className="bg-[#fffdf8]/92 p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-[#fffaf0]/80">
               <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
                 <MapPin className="w-6 h-6" />
               </div>
@@ -132,7 +132,7 @@ export default function Contact() {
               <p className="text-gray-600 font-medium">20 Rue du Curé-Trottier<br/>Kirkland, QC H9J 1K4</p>
             </div>
 
-            <div className="bg-white/92 p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-white/80">
+            <div className="bg-[#fffdf8]/92 p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-[#fffaf0]/80">
               <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
                 <Clock className="w-6 h-6" />
               </div>
@@ -147,7 +147,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             id="contact-form"
-            className="lg:col-span-2 bg-white/94 rounded-3xl shadow-[0_32px_80px_rgba(148,163,184,0.22)] p-8 md:p-12 border border-white/90"
+            className="lg:col-span-2 bg-[#fffdf8]/94 rounded-3xl shadow-[0_32px_80px_rgba(148,163,184,0.22)] p-8 md:p-12 border border-[#fffaf0]/90"
           >
             {isSuccess ? (
               <motion.div 

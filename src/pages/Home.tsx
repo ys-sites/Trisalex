@@ -361,7 +361,7 @@ export default function Home() {
                     ref={(element: HTMLDivElement | null) => {
                       mobileSlideRefs.current[vid.id] = element;
                     }}
-                    className="min-w-[78%] snap-center shrink-0"
+                    className="min-w-[58vw] max-w-[220px] snap-center shrink-0"
                     onClick={() => setMobileVideoIndex(index)}
                   >
                     {renderVideoCard(vid, vid.id + 100, true)}
@@ -654,8 +654,8 @@ export default function Home() {
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-12"
           >
             {[
-              { id: 1, title: "Modern Living Room", category: "Interior", before: "/before.jpg", after: "/after.jpg" },
-              { id: 2, title: "Exterior Facade", category: "Exterior", before: "/before6.jpg", after: "/after6.jpg" },
+              { id: 1, title: "Exterior Renovation Revival", category: "Exterior Renovation", before: "/before.jpg", after: "/after.jpg" },
+              { id: 2, title: "Signature Exterior Paint Refresh", category: "Exterior Paint", before: "/before6.jpg", after: "/after6.jpg" },
             ].map((item) => (
               <motion.div key={item.id} variants={fadeInUp} className="flex flex-col">
                 <div className="mb-4">
