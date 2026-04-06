@@ -81,12 +81,12 @@ export default function Contact() {
               alt=""
               className="h-full w-full object-cover scale-[1.03] opacity-70 brightness-105 saturate-90 transition-all duration-500 ease-out group-hover/contact:opacity-55 hover:!scale-110 hover:!opacity-100 hover:!brightness-100 hover:!saturate-100"
             />
-            <div className="pointer-events-none absolute inset-0 bg-white/35 transition-opacity duration-500 group-hover/contact:bg-white/45 hover:!bg-transparent"></div>
+            <div className="pointer-events-none absolute inset-0 bg-white/12 transition-opacity duration-500 group-hover/contact:bg-white/20 hover:!bg-transparent"></div>
           </div>
         ))}
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-white/58"></div>
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-white/18"></div>
       <div className="pointer-events-none absolute inset-0 z-[2] bg-[linear-gradient(to_right,rgba(46,93,160,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(46,93,160,0.04)_1px,transparent_1px)] bg-[size:92px_92px]"></div>
 
       <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

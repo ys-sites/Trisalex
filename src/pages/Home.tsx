@@ -32,6 +32,8 @@ export default function Home() {
   const { t } = useTranslation();
   const googleReviewLink = "https://share.google/8gIZ6dsyAi8mTG4Ck";
   const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
+  const mobileCarouselRef = useRef<HTMLDivElement | null>(null);
+  const mobileSlideRefs = useRef<Record<number, HTMLDivElement | null>>({});
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
   const [mobileVideoIndex, setMobileVideoIndex] = useState(0);
   const [videoThumbnails, setVideoThumbnails] = useState<Record<number, string>>({});
@@ -164,14 +166,28 @@ export default function Home() {
     setActiveVideoId(null);
   };
 
+  const scrollToMobileVideo = (index: number) => {
+    const targetVideo = videoItems[index];
+    const slide = mobileSlideRefs.current[targetVideo.id];
+    slide?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  };
+
   const handlePrevMobileVideo = () => {
     resetVideosToPreview();
-    setMobileVideoIndex((prev: number) => (prev === 0 ? videoItems.length - 1 : prev - 1));
+    setMobileVideoIndex((prev: number) => {
+      const nextIndex = prev === 0 ? videoItems.length - 1 : prev - 1;
+      scrollToMobileVideo(nextIndex);
+      return nextIndex;
+    });
   };
 
   const handleNextMobileVideo = () => {
     resetVideosToPreview();
-    setMobileVideoIndex((prev: number) => (prev + 1) % videoItems.length);
+    setMobileVideoIndex((prev: number) => {
+      const nextIndex = (prev + 1) % videoItems.length;
+      scrollToMobileVideo(nextIndex);
+      return nextIndex;
+    });
   };
 
   const renderVideoCard = (vid: VideoItem, refId: number, isMobile = false) => {
@@ -334,19 +350,23 @@ export default function Home() {
             variants={staggerContainer}
             className="md:hidden"
           >
-            <div className="relative px-3">
-              <div className="overflow-hidden">
-                <motion.div
-                  animate={{ x: `-${mobileVideoIndex * 100}%` }}
-                  transition={{ duration: 0.34, ease: "easeInOut" }}
-                  className="flex"
-                >
-                  {videoItems.map((vid) => (
-                    <div key={`mobile-${vid.id}`} className="min-w-full shrink-0">
-                      {renderVideoCard(vid, vid.id + 100, true)}
-                    </div>
-                  ))}
-                </motion.div>
+            <div className="relative">
+              <div
+                ref={mobileCarouselRef}
+                className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              >
+                {videoItems.map((vid, index) => (
+                  <div
+                    key={`mobile-${vid.id}`}
+                    ref={(element: HTMLDivElement | null) => {
+                      mobileSlideRefs.current[vid.id] = element;
+                    }}
+                    className="min-w-[78%] snap-center shrink-0"
+                    onClick={() => setMobileVideoIndex(index)}
+                  >
+                    {renderVideoCard(vid, vid.id + 100, true)}
+                  </div>
+                ))}
               </div>
 
               <button
