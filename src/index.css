@@ -14,3 +14,28 @@
     }
   }
 }
+
+.city-ticker-wrap {
+  position: relative;
+}
+
+.city-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: city-scroll-ltr 18s linear infinite;
+}
+
+.city-ticker-content {
+  white-space: nowrap;
+  padding-right: 2rem;
+}
+
+@keyframes city-scroll-ltr {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}

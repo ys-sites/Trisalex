@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CheckCircle2, Star, ArrowRight, Paintbrush, ShieldCheck, Clock, Instagram } from "lucide-react";
+import { CheckCircle2, Star, ArrowRight, Paintbrush, ShieldCheck, Clock, Instagram, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
 import { TestimonialMarquee } from "../components/TestimonialMarquee";
 import { BeforeAfterSlider } from "../components/BeforeAfterSlider";
@@ -21,11 +21,25 @@ const staggerContainer = {
   }
 };
 
+type VideoItem = {
+  id: number;
+  title: string;
+  src: string;
+};
+
 export default function Home() {
   const { t } = useTranslation();
+  const googleReviewLink = "https://share.google/8gIZ6dsyAi8mTG4Ck";
   const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
   const thumbnailPrepared = useRef<Set<number>>(new Set());
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
+  const [mobileVideoIndex, setMobileVideoIndex] = useState(0);
+
+  const videoItems: VideoItem[] = [
+    { id: 1, title: "Trisalex Painting", src: "/vid1.mp4" },
+    { id: 2, title: "Trisalex Painting", src: "/vid2.mp4" },
+    { id: 3, title: "Trisalex Painting", src: "/vid3.mp4" }
+  ];
 
   const handleVideoLoadedData = (id: number) => {
     const video = videoRefs.current[id];
@@ -71,6 +85,80 @@ export default function Home() {
       setActiveVideoId(null);
     }
   };
+
+  const resetVideosToPreview = () => {
+    for (const key in videoRefs.current) {
+      const keyAsNumber = Number(key);
+      const video = videoRefs.current[keyAsNumber];
+      if (!video) {
+        continue;
+      }
+      video.pause();
+      if (thumbnailPrepared.current.has(keyAsNumber)) {
+        video.currentTime = 1;
+      }
+    }
+    setActiveVideoId(null);
+  };
+
+  const handlePrevMobileVideo = () => {
+    resetVideosToPreview();
+    setMobileVideoIndex((prev: number) => (prev === 0 ? videoItems.length - 1 : prev - 1));
+  };
+
+  const handleNextMobileVideo = () => {
+    resetVideosToPreview();
+    setMobileVideoIndex((prev: number) => (prev + 1) % videoItems.length);
+  };
+
+  const renderVideoCard = (vid: VideoItem, refId: number) => (
+    <motion.div
+      key={`${refId}-${vid.id}`}
+      variants={fadeInUp}
+      className="relative rounded-[2rem] overflow-hidden aspect-[9/16] group cursor-pointer border border-white/10 shadow-2xl"
+      onClick={() => handleVideoClick(refId)}
+    >
+      <video
+        src={vid.src}
+        ref={(el: HTMLVideoElement | null) => {
+          videoRefs.current[refId] = el;
+        }}
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        playsInline
+        preload="auto"
+        onLoadedData={() => handleVideoLoadedData(refId)}
+      />
+
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+
+      {/* Top Bar (Glassmorphism) */}
+      <div className="absolute top-4 left-4 right-4 flex items-center justify-between bg-black/40 backdrop-blur-md rounded-2xl p-2 pr-3 border border-white/10">
+        <div className="flex items-center space-x-3 overflow-hidden">
+          {/* Instagram Story Ring with Logo */}
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 p-[2px] flex-shrink-0">
+            <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden p-0.5">
+              <Instagram className="w-4 h-4 text-pink-600" />
+            </div>
+          </div>
+          <span className="text-white text-sm font-medium truncate">{vid.title}</span>
+        </div>
+        <span className="bg-white/20 hover:bg-white/30 transition-colors text-white text-[10px] sm:text-xs font-medium px-3 py-1.5 rounded-full flex-shrink-0">
+          {t('home.video.viewInstagram')}
+        </span>
+      </div>
+
+      {activeVideoId !== refId && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300">
+            <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+        </div>
+      )}
+    </motion.div>
+  );
 
   return (
     <div>
@@ -163,61 +251,40 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
+            className="md:hidden"
           >
-            {[
-              { id: 1, title: "Trisalex Painting", src: "/vid1.mp4" },
-              { id: 2, title: "Trisalex Painting", src: "/vid2.mp4" },
-              { id: 3, title: "Trisalex Painting", src: "/vid3.mp4" }
-            ].map((vid) => (
-              <motion.div
-                key={vid.id}
-                variants={fadeInUp}
-                className="relative rounded-[2rem] overflow-hidden aspect-[9/16] group cursor-pointer border border-white/10 shadow-2xl"
-                onClick={() => handleVideoClick(vid.id)}
+            <div className="flex items-center justify-between mb-4">
+              <button
+                type="button"
+                aria-label="Previous video"
+                onClick={handlePrevMobileVideo}
+                className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors"
               >
-                <video
-                  src={vid.src}
-                  ref={(el: HTMLVideoElement | null) => {
-                    videoRefs.current[vid.id] = el;
-                  }}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  playsInline
-                  preload="auto"
-                  onLoadedData={() => handleVideoLoadedData(vid.id)}
-                />
-                
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <span className="text-white/80 text-sm font-medium">
+                {mobileVideoIndex + 1} / {videoItems.length}
+              </span>
+              <button
+                type="button"
+                aria-label="Next video"
+                onClick={handleNextMobileVideo}
+                className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+            {renderVideoCard(videoItems[mobileVideoIndex], videoItems[mobileVideoIndex].id + 100)}
+          </motion.div>
 
-                {/* Top Bar (Glassmorphism) */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between bg-black/40 backdrop-blur-md rounded-2xl p-2 pr-3 border border-white/10">
-                  <div className="flex items-center space-x-3 overflow-hidden">
-                    {/* Instagram Story Ring with Logo */}
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 p-[2px] flex-shrink-0">
-                      <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden p-0.5">
-                        <Instagram className="w-4 h-4 text-pink-600" />
-                      </div>
-                    </div>
-                    <span className="text-white text-sm font-medium truncate">{vid.title}</span>
-                  </div>
-                  <span className="bg-white/20 hover:bg-white/30 transition-colors text-white text-[10px] sm:text-xs font-medium px-3 py-1.5 rounded-full flex-shrink-0">
-                    {t('home.video.viewInstagram')}
-                  </span>
-                </div>
-
-                {activeVideoId !== vid.id && (
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                )}
-
-              </motion.div>
-            ))}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="hidden md:grid grid-cols-3 gap-6 lg:gap-8"
+          >
+            {videoItems.map((vid) => renderVideoCard(vid, vid.id))}
           </motion.div>
         </div>
       </section>
@@ -283,7 +350,7 @@ export default function Home() {
             <motion.div variants={fadeInUp} className="bg-white rounded-3xl overflow-hidden shadow-lg shadow-gray-200/50 group">
               <div className="relative overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                  src="/int.png"
                   alt="Interior Painting"
                   className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
@@ -310,7 +377,7 @@ export default function Home() {
             <motion.div variants={fadeInUp} className="bg-white rounded-3xl overflow-hidden shadow-lg shadow-gray-200/50 group">
               <div className="relative overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                  src="/ext.jpg"
                   alt="Exterior Spray Painting"
                   className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
@@ -391,7 +458,7 @@ export default function Home() {
       <section className="bg-[#0a0a0a] flex flex-col lg:flex-row">
         <div className="lg:w-1/2 relative min-h-[300px] md:min-h-[400px] lg:min-h-auto">
           <img 
-            src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+            src="/about.jpg" 
             alt="Professional Painter" 
             className="absolute inset-0 w-full h-full object-cover grayscale opacity-80"
           />
@@ -469,8 +536,8 @@ export default function Home() {
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-12"
           >
             {[
-              { id: 1, title: "Modern Living Room", category: "Interior", before: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", after: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
-              { id: 2, title: "Exterior Facade", category: "Exterior", before: "https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80&grayscale=true", after: "https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" },
+              { id: 1, title: "Modern Living Room", category: "Interior", before: "/before.jpg", after: "/after.jpg" },
+              { id: 2, title: "Exterior Facade", category: "Exterior", before: "/before6.jpg", after: "/after6.jpg" },
             ].map((item) => (
               <motion.div key={item.id} variants={fadeInUp} className="flex flex-col">
                 <div className="mb-4">
@@ -512,8 +579,62 @@ export default function Home() {
               {t('home.testimonials.subtitle')}
             </p>
           </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="max-w-3xl mx-auto mb-10"
+          >
+            <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm px-6 py-7 text-center shadow-xl shadow-black/20">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/10 text-yellow-300 mb-4">
+                <Star className="w-7 h-7 fill-current" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-3">Enjoyed working with Trisalex?</h3>
+              <p className="text-gray-300 mb-6 max-w-xl mx-auto">
+                If we transformed your space, we'd appreciate a quick 5-star Google review. It helps more homeowners find us.
+              </p>
+              <a
+                href={googleReviewLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full bg-white text-[#1f3f84] px-6 py-3 text-sm font-bold hover:bg-gray-100 transition-colors"
+              >
+                Leave a 5-Star Review <ArrowRight className="ml-2 w-4 h-4" />
+              </a>
+            </div>
+          </motion.div>
           
           <TestimonialMarquee />
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mt-14"
+          >
+            {[
+              { id: 1, title: "Project 1", category: "Before & After", before: "/before1.jpg", after: "/after1.jpg" },
+              { id: 2, title: "Project 2", category: "Before & After", before: "/before2.jpg", after: "/after2.jpg" },
+              { id: 4, title: "Project 4", category: "Before & After", before: "/before4.png", after: "/after4.png" },
+              { id: 5, title: "Project 5", category: "Before & After", before: "/before5.jpg", after: "/after5.jpg" },
+              { id: 7, title: "Project 7", category: "Before & After", before: "/before7.jpg", after: "/after7.jpg" },
+              { id: 8, title: "Project 8", category: "Before & After", before: "/before8.jpg", after: "/after8.jpg" },
+              { id: 9, title: "Project 9", category: "Before & After", before: "/before9.jpg", after: "/after9.jpg" }
+            ].map((item) => (
+              <motion.div key={item.id} variants={fadeInUp} className="flex flex-col">
+                <div className="mb-4">
+                  <span className="text-blue-300 font-bold text-sm uppercase tracking-wider mb-1 block">{item.category}</span>
+                  <h3 className="text-white font-bold text-2xl">{item.title}</h3>
+                </div>
+                <div className="shadow-xl shadow-black/30 rounded-2xl overflow-hidden border border-white/10">
+                  <BeforeAfterSlider beforeImage={item.before} afterImage={item.after} />
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 

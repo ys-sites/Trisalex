@@ -12,6 +12,7 @@ export default function Layout() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const { t } = useTranslation();
+  const serviceCities = "Montreal  •  West Island  •  Laval  •  South Shore  •  North Shore  •  Vaudreuil  •  Brossard  •  Longueuil  •  Terrebonne  •  Blainville";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,16 +34,25 @@ export default function Layout() {
     <div className="min-h-screen flex flex-col font-sans text-gray-900 bg-gray-50">
       {/* Top Bar */}
       <div className="bg-blue-900 text-white py-2 text-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
-          <div className="flex items-center space-x-4 mb-2 sm:mb-0">
-            <span className="flex items-center"><Phone className="w-4 h-4 mr-2" /> (514) 707-6123</span>
-            <span className="hidden md:flex items-center flex-wrap"><MapPin className="w-4 h-4 mr-2" /> Montreal &nbsp;&nbsp;&bull;&nbsp;&nbsp; West Island &nbsp;&nbsp;&bull;&nbsp;&nbsp; Laval &nbsp;&nbsp;&bull;&nbsp;&nbsp; South Shore &nbsp;&nbsp;&bull;&nbsp;&nbsp; North Shore &nbsp;&nbsp;&bull;&nbsp;&nbsp; Vaudreuil &nbsp;&nbsp;&bull;&nbsp;&nbsp; Brossard &nbsp;&nbsp;&bull;&nbsp;&nbsp; Longueuil &nbsp;&nbsp;&bull;&nbsp;&nbsp; Terrebonne &nbsp;&nbsp;&bull;&nbsp;&nbsp; Blainville</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="sm:hidden overflow-hidden city-ticker-wrap">
+            <div className="city-ticker-track" aria-label="Service cities">
+              <span className="city-ticker-content">{serviceCities}</span>
+              <span className="city-ticker-content" aria-hidden="true">{serviceCities}</span>
+            </div>
           </div>
-          <div className="flex items-center">
-            <a href="https://www.instagram.com/trisalexpainting/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200 transition-colors flex items-center">
-              <Instagram className="w-4 h-4 mr-1" />
-              <span className="hidden sm:inline">{t('nav.followUs')}</span>
-            </a>
+
+          <div className="hidden sm:flex justify-between items-center">
+            <div className="flex items-center space-x-4">
+              <span className="flex items-center"><Phone className="w-4 h-4 mr-2" /> (514) 707-6123</span>
+              <span className="hidden md:flex items-center flex-wrap"><MapPin className="w-4 h-4 mr-2" /> {serviceCities}</span>
+            </div>
+            <div className="flex items-center">
+              <a href="https://www.instagram.com/trisalexpainting/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200 transition-colors flex items-center">
+                <Instagram className="w-4 h-4 mr-1" />
+                <span className="hidden sm:inline">{t('nav.followUs')}</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -122,9 +132,6 @@ export default function Layout() {
             <p className="text-gray-500 text-sm mb-4 md:mb-0 font-medium">
               &copy; {new Date().getFullYear()} Trisalex. {t('footer.rights')}
             </p>
-            <div className="flex space-x-4">
-              <span className="bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 rounded-md text-sm font-bold">5.0 ⭐ {t('footer.googleRated')}</span>
-            </div>
           </div>
         </div>
       </footer>
