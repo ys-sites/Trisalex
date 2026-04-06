@@ -50,7 +50,7 @@ export function FloatingHeader() {
 				{/* Logo Section */}
 				<Link to="/" className="flex items-center gap-3 px-2 hover:opacity-90 transition-opacity">
 					<img 
-						src="/logo.svg" 
+						src="/logo.png" 
 						alt="Trisalex Logo" 
 						className="h-16 sm:h-14 md:h-16 w-auto object-contain" 
 						onError={(e) => {

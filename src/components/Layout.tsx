@@ -11,6 +11,7 @@ export default function Layout() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const isContact = location.pathname === "/contact";
   const { t } = useTranslation();
   const phoneNumber = "(514) 707-6123";
   const contactFormHref = "/contact#contact-form";
@@ -52,9 +53,9 @@ export default function Layout() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col font-sans text-gray-900 bg-gray-50">
+    <div className={cn("min-h-screen flex flex-col font-sans text-gray-900", isContact ? "bg-[#f7f3eb]" : "bg-gray-50")}>
       {/* Top Bar */}
-      <div className="bg-blue-900 text-white py-2 text-sm">
+      {!isContact && <div className="bg-blue-900 text-white py-2 text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="sm:hidden overflow-hidden city-ticker-wrap">
             <div className="city-ticker-track" aria-label="Service cities">
@@ -76,7 +77,7 @@ export default function Layout() {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
 
       {/* Navigation */}
       <div className="w-full h-0 sticky top-0 z-50">
