@@ -100,7 +100,7 @@ export default function Contact() {
           >
             trisalexpainting@gmail.com
           </motion.a>
-        </div>
+        </motion.div>
 
         <motion.div
           initial="hidden"
@@ -113,7 +113,6 @@ export default function Contact() {
             variants={fadeInUp}
             id="contact-form"
             className="bg-[#fffdf8]/94 rounded-3xl shadow-[0_32px_80px_rgba(148,163,184,0.22)] p-8 md:p-12 border border-[#fffaf0]/90"
-          >
           >
             {isSuccess ? (
               <motion.div 
