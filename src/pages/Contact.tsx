@@ -147,6 +147,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            id="contact-form"
             className="lg:col-span-2 bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
           >
             {isSuccess ? (
@@ -249,16 +250,16 @@ export default function Contact() {
                   <button 
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-[#4278c4] to-[#2e5da0] text-white font-extrabold py-5 rounded-2xl text-xl shadow-xl shadow-blue-200 transition-all flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full bg-gradient-to-r from-[#4278c4] to-[#2e5da0] text-white font-extrabold py-4 md:py-5 rounded-2xl text-base md:text-xl shadow-xl shadow-blue-200 transition-all flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 className="w-6 h-6 animate-spin" />
+                        <Loader2 className="w-5 h-5 md:w-6 md:h-6 animate-spin" />
                         Sending...
                       </>
                     ) : (
                       <>
-                        {t('home.contact.submit')} <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
+                        {t('home.contact.submit')} <ArrowRight className="w-5 h-5 md:w-6 md:h-6 transition-transform group-hover:translate-x-1" />
                       </>
                     )}
                   </button>

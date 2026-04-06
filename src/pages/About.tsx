@@ -39,7 +39,7 @@ export default function About() {
             </ul>
           </div>
           
-          <div className="relative">
+          <div className="relative hidden lg:block">
             <div className="aspect-w-4 aspect-h-5 rounded-2xl overflow-hidden shadow-xl">
               <img
                 src="/main.jpg"

@@ -13,7 +13,7 @@ export default function Layout() {
   const isHome = location.pathname === "/";
   const { t } = useTranslation();
   const phoneNumber = "(514) 707-6123";
-  const phoneHref = "tel:+15147076123";
+  const contactFormHref = "/contact#contact-form";
   const serviceCities = "Montreal  •  West Island  •  Laval  •  South Shore  •  North Shore  •  Vaudreuil  •  Brossard  •  Longueuil  •  Terrebonne  •  Blainville";
 
   useEffect(() => {
@@ -72,8 +72,8 @@ export default function Layout() {
       </main>
 
       <a
-        href={phoneHref}
-        aria-label={`Call Trisalex at ${phoneNumber}`}
+        href={contactFormHref}
+        aria-label="Open the contact form"
         className="sm:hidden fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#2e5da0] text-white shadow-[0_18px_35px_rgba(46,93,160,0.35)] transition-transform duration-200 active:scale-95"
       >
         <Phone className="h-6 w-6" />

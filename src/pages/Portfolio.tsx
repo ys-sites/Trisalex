@@ -71,14 +71,14 @@ const beforeAfterItems = [
 
 export default function Portfolio() {
   return (
-    <div className="py-16 md:py-24 bg-[#0a0a0a] min-h-screen">
+    <div className="py-16 md:py-24 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-extrabold text-white mb-6"
+            className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6"
           >
             Before & After Projects
           </motion.h1>
@@ -86,7 +86,7 @@ export default function Portfolio() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-400 max-w-3xl mx-auto mb-8"
+            className="text-xl text-gray-600 max-w-3xl mx-auto mb-8"
           >
             Browse the full gallery of recent Trisalex transformations across Montreal and the West Island, with the same before-and-after comparisons previously shown on the home page.
           </motion.p>
@@ -98,7 +98,7 @@ export default function Portfolio() {
             href="https://www.instagram.com/trisalexpainting/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-white/10 border border-white/20 text-white font-semibold rounded-full shadow-lg hover:bg-white/20 transition-colors"
+            className="inline-flex items-center px-6 py-3 bg-blue-50 border border-blue-100 text-[#2e5da0] font-semibold rounded-full shadow-lg hover:bg-blue-100 transition-colors"
           >
             <Instagram className="w-5 h-5 mr-2" />
             Follow us on Instagram
@@ -119,10 +119,10 @@ export default function Portfolio() {
               className="flex flex-col"
             >
               <div className="mb-4">
-                <span className="text-blue-300 font-bold text-sm uppercase tracking-wider mb-1 block">{item.category}</span>
-                <h3 className="text-white font-bold text-2xl">{item.title}</h3>
+                <span className="text-[#2e5da0] font-bold text-sm uppercase tracking-wider mb-1 block">{item.category}</span>
+                <h3 className="text-gray-900 font-bold text-2xl">{item.title}</h3>
               </div>
-              <div className="shadow-xl shadow-black/30 rounded-2xl overflow-hidden border border-white/10">
+              <div className="shadow-xl shadow-gray-200/60 rounded-2xl overflow-hidden border border-gray-100">
                 <BeforeAfterSlider 
                   beforeImage={item.before} 
                   afterImage={item.after} 
