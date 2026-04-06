@@ -22,50 +22,50 @@ const beforeAfterItems = [
     id: 1,
     before: "/before1.jpg",
     after: "/after1.jpg",
-    title: "Project 1",
-    category: "Before & After"
+    title: "Fireplace Feature Revival",
+    category: "Interior Renovation"
   },
   {
     id: 2,
     before: "/before2.jpg",
     after: "/after2.jpg",
-    title: "Project 2",
-    category: "Before & After"
+    title: "Siding Color Refresh",
+    category: "Exterior"
   },
   {
     id: 4,
     before: "/before4.png",
     after: "/after4.png",
-    title: "Project 4",
-    category: "Before & After"
+    title: "Seamless Interior Wall Repair",
+    category: "Interior Renovation"
   },
   {
     id: 5,
     before: "/before5.jpg",
     after: "/after5.jpg",
-    title: "Project 5",
-    category: "Before & After"
+    title: "Modern Deck Transformation",
+    category: "Deck"
   },
   {
     id: 7,
     before: "/before7.jpg",
     after: "/after7.jpg",
-    title: "Project 7",
-    category: "Before & After"
+    title: "Exterior Facade Renewal",
+    category: "Exterior"
   },
   {
     id: 8,
     before: "/before8.jpg",
     after: "/after8.jpg",
-    title: "Project 8",
-    category: "Before & After"
+    title: "Front Door First Impression",
+    category: "Main Door"
   },
   {
     id: 9,
     before: "/before9.jpg",
     after: "/after9.jpg",
-    title: "Project 9",
-    category: "Before & After"
+    title: "Exterior Brick Brightening",
+    category: "Exterior"
   }
 ];
 

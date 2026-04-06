@@ -58,18 +58,15 @@ export default function Contact() {
   };
 
   const bgImages = [
-    "https://images.unsplash.com/photo-1589939705384-5185137a7f0f",
-    "https://images.unsplash.com/photo-1562259949-e8e7689d7828",
-    "https://images.unsplash.com/photo-1595844730298-b960ff98fee0",
-    "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
-    "https://images.unsplash.com/photo-1513694203232-719a280e022f",
-    "https://images.unsplash.com/photo-1503174971373-b1f69850bbd6",
-    "https://images.unsplash.com/photo-1534349762230-e0cadf78f5db",
-    "https://images.unsplash.com/photo-1560185007-cde436f6a4d0",
-    "https://images.unsplash.com/photo-1560184897-ae75f418493e",
-    "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1",
-    "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6",
-    "https://images.unsplash.com/photo-1484154218962-a197022b5858"
+    "/after.jpg",
+    "/after1.jpg",
+    "/after2.jpg",
+    "/after4.png",
+    "/after5.jpg",
+    "/after6.jpg",
+    "/after7.jpg",
+    "/after8.jpg",
+    "/after9.jpg"
   ];
 
   // Create a very dense repeated grid for the "seamless row" look
@@ -77,22 +74,21 @@ export default function Contact() {
 
   return (
     <div className="relative min-h-screen pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-white">
-      {/* Seamless Background Grid (Bright White Blurred Theme) */}
-      <div className="absolute inset-0 z-0 grid grid-cols-5 md:grid-cols-8 lg:grid-cols-10 auto-rows-fr group/grid bg-white">
+      {/* Seamless Background Grid (Blurred project mosaic) */}
+      <div className="absolute inset-0 z-0 grid grid-cols-4 md:grid-cols-7 lg:grid-cols-9 auto-rows-fr group/grid bg-white">
         {gridImages.map((src, i) => (
           <div key={i} className="relative aspect-square overflow-hidden">
             <img 
-              src={`${src}?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80`}
-              alt={`Background ${i}`} 
-              className="w-full h-full object-cover transition-all duration-500 blur-sm opacity-30 brightness-110 group-hover/grid:blur-md group-hover/grid:opacity-10 hover:!blur-0 hover:!opacity-100 hover:!brightness-100 hover:scale-110 z-0 hover:z-20 relative cursor-pointer"
-              referrerPolicy="no-referrer"
+              src={src}
+              alt=""
+              className="relative z-0 h-full w-full cursor-pointer object-cover scale-105 blur-[10px] opacity-45 brightness-110 saturate-75 transition-all duration-700 ease-out group-hover/grid:scale-100 group-hover/grid:blur-[12px] group-hover/grid:opacity-25 group-hover/grid:saturate-50 hover:!z-20 hover:!scale-110 hover:!blur-0 hover:!opacity-100 hover:!brightness-100 hover:!saturate-100"
             />
+            <div className="pointer-events-none absolute inset-0 z-10 bg-white/60 transition-opacity duration-700 ease-out group-hover/grid:opacity-70 hover:!opacity-0"></div>
           </div>
         ))}
       </div>
       
-      {/* Subtle white wash overlay - moved behind content but above grid */}
-      <div className="absolute inset-0 bg-white/20 pointer-events-none z-[1]"></div>
+      <div className="absolute inset-0 bg-white/35 pointer-events-none z-[1]"></div>
 
       <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
