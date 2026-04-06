@@ -91,15 +91,6 @@ export default function Contact() {
           >
             {t('home.cta.subtitle')}
           </motion.p>
-          <motion.a
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
-            href="mailto:trisalexpainting@gmail.com"
-            className="inline-block mt-4 text-blue-700 font-semibold hover:text-blue-800 transition-colors"
-          >
-            trisalexpainting@gmail.com
-          </motion.a>
         </motion.div>
 
         <motion.div
