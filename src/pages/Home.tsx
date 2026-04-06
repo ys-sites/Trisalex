@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { CheckCircle2, Star, ArrowRight, Paintbrush, ShieldCheck, Clock, Instagram, ChevronLeft, ChevronRight } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { TestimonialMarquee } from "../components/TestimonialMarquee";
 import { BeforeAfterSlider } from "../components/BeforeAfterSlider";
 import { useTranslation } from "react-i18next";
@@ -34,7 +34,6 @@ export default function Home() {
   const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
   const [mobileVideoIndex, setMobileVideoIndex] = useState(0);
-  const [mobileSlideDirection, setMobileSlideDirection] = useState<1 | -1>(1);
   const [videoThumbnails, setVideoThumbnails] = useState<Record<number, string>>({});
 
   const videoItems: VideoItem[] = [
@@ -167,13 +166,11 @@ export default function Home() {
 
   const handlePrevMobileVideo = () => {
     resetVideosToPreview();
-    setMobileSlideDirection(-1);
     setMobileVideoIndex((prev: number) => (prev === 0 ? videoItems.length - 1 : prev - 1));
   };
 
   const handleNextMobileVideo = () => {
     resetVideosToPreview();
-    setMobileSlideDirection(1);
     setMobileVideoIndex((prev: number) => (prev + 1) % videoItems.length);
   };
 
@@ -338,24 +335,25 @@ export default function Home() {
             className="md:hidden"
           >
             <div className="relative px-3">
-              <AnimatePresence mode="wait" initial={false} custom={mobileSlideDirection}>
+              <div className="overflow-hidden">
                 <motion.div
-                  key={videoItems[mobileVideoIndex].id}
-                  custom={mobileSlideDirection}
-                  initial={{ x: mobileSlideDirection > 0 ? 48 : -48, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: mobileSlideDirection > 0 ? -48 : 48, opacity: 0 }}
-                  transition={{ duration: 0.28, ease: "easeOut" }}
+                  animate={{ x: `-${mobileVideoIndex * 100}%` }}
+                  transition={{ duration: 0.34, ease: "easeInOut" }}
+                  className="flex"
                 >
-                  {renderVideoCard(videoItems[mobileVideoIndex], videoItems[mobileVideoIndex].id + 100, true)}
+                  {videoItems.map((vid) => (
+                    <div key={`mobile-${vid.id}`} className="min-w-full shrink-0">
+                      {renderVideoCard(vid, vid.id + 100, true)}
+                    </div>
+                  ))}
                 </motion.div>
-              </AnimatePresence>
+              </div>
 
               <button
                 type="button"
                 aria-label="Previous video"
                 onClick={handlePrevMobileVideo}
-                className="absolute left-0 top-1/2 z-20 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-white hover:bg-black/50 transition-colors"
+                className="absolute left-4 top-1/2 z-20 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-white hover:bg-black/50 transition-colors"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
@@ -364,7 +362,7 @@ export default function Home() {
                 type="button"
                 aria-label="Next video"
                 onClick={handleNextMobileVideo}
-                className="absolute right-0 top-1/2 z-20 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-white hover:bg-black/50 transition-colors"
+                className="absolute right-4 top-1/2 z-20 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-white hover:bg-black/50 transition-colors"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>

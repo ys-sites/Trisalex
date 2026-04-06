@@ -78,13 +78,13 @@ export function FloatingHeader() {
 				</div>
 
 				{/* Right Section (Lang + CTA) */}
-				<div className="flex items-center gap-3 pr-1">
+				<div className="flex items-center gap-2 pr-1">
 					{/* Language Toggle */}
-					<div className="hidden sm:flex items-center bg-gray-50/80 border border-gray-100 rounded-full p-1">
+					<div className="flex items-center bg-gray-50/80 border border-gray-100 rounded-full p-1">
 						<button 
 							onClick={() => handleLangChange('EN')}
 							className={cn(
-								"px-3 py-1.5 text-xs font-bold rounded-full transition-all duration-200",
+								"px-2.5 py-1.5 text-[11px] sm:text-xs font-bold rounded-full transition-all duration-200",
 								lang === 'EN' ? "bg-white shadow-sm text-[#2e5da0]" : "text-gray-500 hover:text-gray-700"
 							)}
 						>
@@ -93,7 +93,7 @@ export function FloatingHeader() {
 						<button 
 							onClick={() => handleLangChange('FR')}
 							className={cn(
-								"px-3 py-1.5 text-xs font-bold rounded-full transition-all duration-200",
+								"px-2.5 py-1.5 text-[11px] sm:text-xs font-bold rounded-full transition-all duration-200",
 								lang === 'FR' ? "bg-white shadow-sm text-[#2e5da0]" : "text-gray-500 hover:text-gray-700"
 							)}
 						>

@@ -24,6 +24,10 @@ export default function Layout() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [location.pathname]);
+
   const navLinks = [
     { name: t('nav.home'), path: "/" },
     { name: t('nav.about'), path: "/about" },
@@ -74,7 +78,7 @@ export default function Layout() {
       <a
         href={contactFormHref}
         aria-label="Open the contact form"
-        className="sm:hidden fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#2e5da0] text-white shadow-[0_18px_35px_rgba(46,93,160,0.35)] transition-transform duration-200 active:scale-95"
+        className="lg:hidden fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#2e5da0] text-white shadow-[0_18px_35px_rgba(46,93,160,0.35)] transition-transform duration-200 active:scale-95"
       >
         <Phone className="h-6 w-6" />
       </a>

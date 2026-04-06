@@ -79,7 +79,7 @@ export default function Contact() {
             <img
               src={src}
               alt=""
-              className="h-full w-full object-cover scale-[1.03] blur-[3px] opacity-70 brightness-105 saturate-90 transition-all duration-500 ease-out group-hover/contact:opacity-55 group-hover/contact:blur-[4px] hover:!scale-110 hover:!blur-0 hover:!opacity-100 hover:!brightness-100 hover:!saturate-100"
+              className="h-full w-full object-cover scale-[1.03] opacity-70 brightness-105 saturate-90 transition-all duration-500 ease-out group-hover/contact:opacity-55 hover:!scale-110 hover:!opacity-100 hover:!brightness-100 hover:!saturate-100"
             />
             <div className="pointer-events-none absolute inset-0 bg-white/35 transition-opacity duration-500 group-hover/contact:bg-white/45 hover:!bg-transparent"></div>
           </div>
@@ -116,7 +116,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-1 space-y-6"
           >
-            <div className="bg-white/92 backdrop-blur-md p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-white/80">
+            <div className="bg-white/92 p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-white/80">
               <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
                 <Phone className="w-6 h-6" />
               </div>
@@ -124,7 +124,7 @@ export default function Contact() {
               <p className="text-gray-600 font-medium">(514) 707-6123</p>
             </div>
 
-            <div className="bg-white/92 backdrop-blur-md p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-white/80">
+            <div className="bg-white/92 p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-white/80">
               <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
                 <MapPin className="w-6 h-6" />
               </div>
@@ -132,7 +132,7 @@ export default function Contact() {
               <p className="text-gray-600 font-medium">20 Rue du Curé-Trottier<br/>Kirkland, QC H9J 1K4</p>
             </div>
 
-            <div className="bg-white/92 backdrop-blur-md p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-white/80">
+            <div className="bg-white/92 p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-white/80">
               <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
                 <Clock className="w-6 h-6" />
               </div>
@@ -147,7 +147,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             id="contact-form"
-            className="lg:col-span-2 bg-white/94 backdrop-blur-xl rounded-3xl shadow-[0_32px_80px_rgba(148,163,184,0.22)] p-8 md:p-12 border border-white/90"
+            className="lg:col-span-2 bg-white/94 rounded-3xl shadow-[0_32px_80px_rgba(148,163,184,0.22)] p-8 md:p-12 border border-white/90"
           >
             {isSuccess ? (
               <motion.div 
