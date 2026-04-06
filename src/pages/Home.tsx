@@ -31,7 +31,6 @@ export default function Home() {
   const { t } = useTranslation();
   const googleReviewLink = "https://share.google/8gIZ6dsyAi8mTG4Ck";
   const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
-  const thumbnailPrepared = useRef<Set<number>>(new Set());
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
   const [mobileVideoIndex, setMobileVideoIndex] = useState(0);
 
@@ -41,16 +40,19 @@ export default function Home() {
     { id: 3, title: "Trisalex Painting", src: "/vid3.mp4" }
   ];
 
+  const setVideoPreviewFrame = (video: HTMLVideoElement) => {
+    const previewTime = Number.isFinite(video.duration) && video.duration > 1 ? 1 : 0;
+    video.pause();
+    video.currentTime = previewTime;
+  };
+
   const handleVideoLoadedData = (id: number) => {
     const video = videoRefs.current[id];
-    if (!video || thumbnailPrepared.current.has(id)) {
+    if (!video || activeVideoId === id) {
       return;
     }
 
-    // Seek to 1 second once so that frame is used as the thumbnail preview.
-    thumbnailPrepared.current.add(id);
-    video.currentTime = 1;
-    video.pause();
+    setVideoPreviewFrame(video);
   };
 
   const handleVideoClick = async (id: number) => {
@@ -65,10 +67,7 @@ export default function Home() {
       if (!video || keyAsNumber === id) {
         continue;
       }
-      video.pause();
-      if (thumbnailPrepared.current.has(keyAsNumber)) {
-        video.currentTime = 1;
-      }
+      setVideoPreviewFrame(video);
     }
 
     if (selectedVideo.paused) {
@@ -80,8 +79,7 @@ export default function Home() {
         setActiveVideoId(null);
       }
     } else {
-      selectedVideo.pause();
-      selectedVideo.currentTime = 1;
+      setVideoPreviewFrame(selectedVideo);
       setActiveVideoId(null);
     }
   };
@@ -93,10 +91,7 @@ export default function Home() {
       if (!video) {
         continue;
       }
-      video.pause();
-      if (thumbnailPrepared.current.has(keyAsNumber)) {
-        video.currentTime = 1;
-      }
+      setVideoPreviewFrame(video);
     }
     setActiveVideoId(null);
   };
@@ -456,11 +451,11 @@ export default function Home() {
 
       {/* Why Choose Us Section */}
       <section className="bg-[#0a0a0a] flex flex-col lg:flex-row">
-        <div className="lg:w-1/2 relative min-h-[300px] md:min-h-[400px] lg:min-h-auto">
+        <div className="trisalex-about-visual lg:w-1/2 relative min-h-[300px] md:min-h-[400px] lg:min-h-auto overflow-hidden">
           <img 
             src="/about.jpg" 
             alt="Professional Painter" 
-            className="absolute inset-0 w-full h-full object-cover grayscale opacity-80"
+            className="trisalex-about-image absolute inset-0 w-full h-full object-cover"
           />
         </div>
         <div className="lg:w-1/2 p-8 md:p-12 lg:p-24 flex flex-col justify-center">
@@ -607,34 +602,6 @@ export default function Home() {
           </motion.div>
           
           <TestimonialMarquee />
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mt-14"
-          >
-            {[
-              { id: 1, title: "Project 1", category: "Before & After", before: "/before1.jpg", after: "/after1.jpg" },
-              { id: 2, title: "Project 2", category: "Before & After", before: "/before2.jpg", after: "/after2.jpg" },
-              { id: 4, title: "Project 4", category: "Before & After", before: "/before4.png", after: "/after4.png" },
-              { id: 5, title: "Project 5", category: "Before & After", before: "/before5.jpg", after: "/after5.jpg" },
-              { id: 7, title: "Project 7", category: "Before & After", before: "/before7.jpg", after: "/after7.jpg" },
-              { id: 8, title: "Project 8", category: "Before & After", before: "/before8.jpg", after: "/after8.jpg" },
-              { id: 9, title: "Project 9", category: "Before & After", before: "/before9.jpg", after: "/after9.jpg" }
-            ].map((item) => (
-              <motion.div key={item.id} variants={fadeInUp} className="flex flex-col">
-                <div className="mb-4">
-                  <span className="text-blue-300 font-bold text-sm uppercase tracking-wider mb-1 block">{item.category}</span>
-                  <h3 className="text-white font-bold text-2xl">{item.title}</h3>
-                </div>
-                <div className="shadow-xl shadow-black/30 rounded-2xl overflow-hidden border border-white/10">
-                  <BeforeAfterSlider beforeImage={item.before} afterImage={item.after} />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </section>
 

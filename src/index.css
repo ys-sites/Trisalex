@@ -39,3 +39,18 @@
     transform: translateX(0%);
   }
 }
+
+.trisalex-about-image {
+  filter: grayscale(1);
+  opacity: 0.8;
+  transform: scale(1.01);
+  transition: filter 500ms ease, opacity 500ms ease, transform 800ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .trisalex-about-visual:hover .trisalex-about-image {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}

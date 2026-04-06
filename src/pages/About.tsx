@@ -42,10 +42,9 @@ export default function About() {
           <div className="relative">
             <div className="aspect-w-4 aspect-h-5 rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                src="/about.jpg"
                 alt="Painter at work"
                 className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
               />
             </div>
             <div className="absolute -bottom-8 -left-8 bg-blue-600 text-white p-8 rounded-2xl shadow-lg hidden md:block">

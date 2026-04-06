@@ -12,6 +12,8 @@ export default function Layout() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const { t } = useTranslation();
+  const phoneNumber = "(514) 707-6123";
+  const phoneHref = "tel:+15147076123";
   const serviceCities = "Montreal  •  West Island  •  Laval  •  South Shore  •  North Shore  •  Vaudreuil  •  Brossard  •  Longueuil  •  Terrebonne  •  Blainville";
 
   useEffect(() => {
@@ -44,7 +46,7 @@ export default function Layout() {
 
           <div className="hidden sm:flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <span className="flex items-center"><Phone className="w-4 h-4 mr-2" /> (514) 707-6123</span>
+              <span className="flex items-center"><Phone className="w-4 h-4 mr-2" /> {phoneNumber}</span>
               <span className="hidden md:flex items-center flex-wrap"><MapPin className="w-4 h-4 mr-2" /> {serviceCities}</span>
             </div>
             <div className="flex items-center">
@@ -68,6 +70,14 @@ export default function Layout() {
       <main className={cn("flex-grow", !isHome && "pt-8")}>
         <Outlet />
       </main>
+
+      <a
+        href={phoneHref}
+        aria-label={`Call Trisalex at ${phoneNumber}`}
+        className="sm:hidden fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#2e5da0] text-white shadow-[0_18px_35px_rgba(46,93,160,0.35)] transition-transform duration-200 active:scale-95"
+      >
+        <Phone className="h-6 w-6" />
+      </a>
 
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 pt-16 pb-8">
@@ -116,7 +126,7 @@ export default function Layout() {
                 </li>
                 <li className="flex items-center">
                   <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                  <span className="text-gray-600 font-medium">(514) 707-6123</span>
+                  <span className="text-gray-600 font-medium">{phoneNumber}</span>
                 </li>
                 <li className="flex items-center">
                   <Instagram className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />

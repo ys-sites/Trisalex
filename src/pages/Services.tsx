@@ -8,25 +8,25 @@ export default function Services() {
       icon: <Paintbrush className="w-12 h-12 text-blue-600" />,
       title: "Interior Painting",
       description: "Transform your living spaces with our high-end interior painting services. We handle everything from walls and ceilings to intricate trim and doors, using only premium quality paints for a flawless finish.",
-      image: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/after1.jpg"
     },
     {
       icon: <Home className="w-12 h-12 text-blue-600" />,
       title: "Exterior Spray Painting",
       description: "Boost your home's curb appeal and protect it from the elements. Our exterior spray painting provides a smooth, durable, and weather-resistant finish for siding, brick, stucco, and more.",
-      image: "https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/after2.jpg"
     },
     {
       icon: <PenTool className="w-12 h-12 text-blue-600" />,
       title: "Drywall Repairs & Plastering",
       description: "Proper preparation is key to a lasting paint job. We offer expert drywall repairs, patching, and plastering to ensure your surfaces are perfectly smooth before the first drop of paint is applied.",
-      image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/after4.png"
     },
     {
       icon: <Paintbrush className="w-12 h-12 text-blue-600" />,
       title: "Commercial Painting",
       description: "Professional painting services for businesses, offices, and retail spaces in Montreal. We work around your schedule to minimize disruption while delivering high-quality results.",
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/after.jpg"
     },
     {
       icon: <Home className="w-12 h-12 text-blue-600" />,
