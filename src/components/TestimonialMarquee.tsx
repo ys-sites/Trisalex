@@ -4,44 +4,52 @@ import { cn } from '../lib/utils';
 
 const reviews = [
   {
-    title: "Basement renovation",
-    text: "We got a legal basement done from Hamza and his team, their customer service, quality, and transparency were all perfect. The project was done in timely manner.",
-    author: "HomeOwner"
+    title: "Interior Painting - Full Main Floor",
+    text: "Trisalex repainted our living room, kitchen, and hallway. The prep was meticulous, edges are perfectly clean, and they finished exactly on schedule.",
+    author: "Sarah M.",
+    city: "West Island"
   },
   {
-    title: "Full home reno",
-    text: "I had a great experience with this company they did a full remodel for my house all 3 levels, they completely changed the entire house and through out the...",
-    author: "Omar Ibrahim"
+    title: "Exterior Spray Painting - Brick and Aluminum",
+    text: "We hired Trisalex for exterior spray painting on our brick facade and aluminum siding. The finish looks factory-smooth and the color came out exactly as promised.",
+    author: "Marc D.",
+    city: "Kirkland"
   },
   {
-    title: "Deck Build",
-    text: "Amazing service from Hamza and his team. Offered a more than fair price and was clean, quick and hardworking with his team.",
-    author: "Customer"
+    title: "Cabinet Painting - Kitchen Refresh",
+    text: "Our kitchen cabinets look brand new after Trisalex refinished them. The team protected everything, kept the space clean, and delivered a premium result.",
+    author: "Nadia R.",
+    city: "Laval"
   },
   {
-    title: "Washroom renovation",
-    text: "Hamza and his team renovated by washroom. Installed and rebuild the shower and water system. The work was clean. No messes nor junk was made or left behind after...",
-    author: "Customer"
+    title: "Interior Painting - Condo Turnover",
+    text: "I needed a fast repaint before listing my condo. Trisalex patched walls, painted ceilings and trim, and completed everything within three days.",
+    author: "Kevin L.",
+    city: "Montreal"
   },
   {
-    title: "Basement Finishing",
-    text: "Dealing with Hamza was an absolute pleasure! Not only was the work completed in a timely manner, he was upfront regarding any potential issues and took care of...",
-    author: "Customer"
+    title: "Exterior Spray Painting - Vinyl Siding",
+    text: "Trisalex transformed our faded vinyl siding and shutters. The crew was punctual, organized, and the curb appeal improvement is incredible.",
+    author: "Julie T.",
+    city: "Brossard"
   },
   {
-    title: "Basement renovation",
-    text: "Great work, very professionally done. Would communicate well, and take the time to explain everything. Very effective.",
-    author: "Customer"
+    title: "Interior Painting - Staircase and Trim",
+    text: "We booked Trisalex for our staircase, railings, and trim. Communication was excellent throughout and the final finish is flawless.",
+    author: "Anthony G.",
+    city: "Vaudreuil"
   },
   {
-    title: "Amazing result",
-    text: "Hamza and his team are great they renovated my washroom upstairs and Im beyond happy with the results and quality of work and the companys professionalism...",
-    author: "HomeOwner"
+    title: "Commercial Painting - Boutique Space",
+    text: "Our boutique stayed open while Trisalex repainted the interior in phases. They were respectful with customers and delivered a clean, professional look.",
+    author: "Isabelle P.",
+    city: "Longueuil"
   },
   {
-    title: "Perfectly done",
-    text: "The renovation was great! So organized and well managed! Got the job done perfectly. Perfectly done!",
-    author: "HomeOwner"
+    title: "Interior Painting - Basement and Ceiling",
+    text: "From drywall touch-ups to final coats, Trisalex handled our basement repaint professionally. The space is brighter and the workmanship is top quality.",
+    author: "Daniel C.",
+    city: "Terrebonne"
   }
 ];
 
@@ -60,6 +68,7 @@ const ReviewCard: React.FC<{ review: typeof reviews[0] }> = ({ review }) => (
       {review.text}
     </p>
     <p className="text-white font-bold text-sm">{review.author}</p>
+    <p className="text-blue-300 text-xs mt-1">{review.city}</p>
   </div>
 );
 
