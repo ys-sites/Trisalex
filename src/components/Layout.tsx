@@ -15,7 +15,7 @@ export default function Layout() {
   const { t } = useTranslation();
   const phoneNumber = "(514) 707-6123";
   const contactFormHref = "/contact#contact-form";
-  const serviceCities = "Montreal  •  West Island  •  Laval  •  South Shore  •  North Shore  •  Vaudreuil  •  Brossard  •  Longueuil  •  Terrebonne  •  Blainville";
+  const serviceCities = t("layout.serviceCities");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,7 +58,7 @@ export default function Layout() {
       {!isContact && <div className="bg-blue-900 text-white py-2 text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="sm:hidden overflow-hidden city-ticker-wrap">
-            <div className="city-ticker-track" aria-label="Service cities">
+            <div className="city-ticker-track" aria-label={t("layout.serviceCitiesAria")}>
               <span className="city-ticker-content">{serviceCities}</span>
               <span className="city-ticker-content" aria-hidden="true">{serviceCities}</span>
             </div>
@@ -93,7 +93,7 @@ export default function Layout() {
 
       <a
         href={contactFormHref}
-        aria-label="Open the contact form"
+        aria-label={t("layout.openContactForm")}
         className="lg:hidden fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#2e5da0] text-white shadow-[0_18px_35px_rgba(46,93,160,0.35)] transition-transform duration-200 active:scale-95"
       >
         <Phone className="h-6 w-6" />

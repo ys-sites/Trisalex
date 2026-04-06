@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Instagram, ExternalLink } from "lucide-react";
 import { BeforeAfterSlider } from "../components/BeforeAfterSlider";
+import { useTranslation } from "react-i18next";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 32 },
@@ -21,59 +22,61 @@ const staggerContainer = {
   }
 };
 
-const beforeAfterItems = [
-  {
-    id: 1,
-    before: "/before1.jpg",
-    after: "/after1.jpg",
-    title: "Fireplace Feature Revival",
-    category: "Interior Renovation"
-  },
-  {
-    id: 2,
-    before: "/before2.jpg",
-    after: "/after2.jpg",
-    title: "Siding Color Refresh",
-    category: "Exterior"
-  },
-  {
-    id: 4,
-    before: "/before4.png",
-    after: "/after4.png",
-    title: "Seamless Interior Wall Repair",
-    category: "Interior Renovation"
-  },
-  {
-    id: 5,
-    before: "/before5.jpg",
-    after: "/after5.jpg",
-    title: "Modern Deck Transformation",
-    category: "Deck"
-  },
-  {
-    id: 7,
-    before: "/before7.jpg",
-    after: "/after7.jpg",
-    title: "Exterior Facade Renewal",
-    category: "Exterior"
-  },
-  {
-    id: 8,
-    before: "/before8.jpg",
-    after: "/after8.jpg",
-    title: "Front Door First Impression",
-    category: "Main Door"
-  },
-  {
-    id: 9,
-    before: "/before9.jpg",
-    after: "/after9.jpg",
-    title: "Exterior Brick Brightening",
-    category: "Exterior"
-  }
-];
-
 export default function Portfolio() {
+  const { t } = useTranslation();
+
+  const beforeAfterItems = [
+    {
+      id: 1,
+      before: "/before1.jpg",
+      after: "/after1.jpg",
+      title: t("portfolioPage.items.0.title"),
+      category: t("portfolioPage.items.0.category")
+    },
+    {
+      id: 2,
+      before: "/before2.jpg",
+      after: "/after2.jpg",
+      title: t("portfolioPage.items.1.title"),
+      category: t("portfolioPage.items.1.category")
+    },
+    {
+      id: 4,
+      before: "/before4.png",
+      after: "/after4.png",
+      title: t("portfolioPage.items.2.title"),
+      category: t("portfolioPage.items.2.category")
+    },
+    {
+      id: 5,
+      before: "/before5.jpg",
+      after: "/after5.jpg",
+      title: t("portfolioPage.items.3.title"),
+      category: t("portfolioPage.items.3.category")
+    },
+    {
+      id: 7,
+      before: "/before7.jpg",
+      after: "/after7.jpg",
+      title: t("portfolioPage.items.4.title"),
+      category: t("portfolioPage.items.4.category")
+    },
+    {
+      id: 8,
+      before: "/before8.jpg",
+      after: "/after8.jpg",
+      title: t("portfolioPage.items.5.title"),
+      category: t("portfolioPage.items.5.category")
+    },
+    {
+      id: 9,
+      before: "/before9.jpg",
+      after: "/after9.jpg",
+      title: t("portfolioPage.items.6.title"),
+      category: t("portfolioPage.items.6.category")
+    }
+  ];
+
   return (
     <div className="py-16 md:py-24 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,7 +88,7 @@ export default function Portfolio() {
             variants={fadeInUp}
             className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6"
           >
-            Before & After Projects
+            {t("portfolioPage.title")}
           </motion.h1>
           <motion.p 
             initial="hidden"
@@ -94,7 +97,7 @@ export default function Portfolio() {
             variants={fadeInUp}
             className="text-xl text-gray-600 max-w-3xl mx-auto mb-8"
           >
-            Browse the full gallery of recent Trisalex transformations across Montreal and the West Island, with the same before-and-after comparisons previously shown on the home page.
+            {t("portfolioPage.subtitle")}
           </motion.p>
           
           <motion.a 
@@ -108,7 +111,7 @@ export default function Portfolio() {
             className="inline-flex items-center px-6 py-3 bg-blue-50 border border-blue-100 text-[#2e5da0] font-semibold rounded-full shadow-lg hover:bg-blue-100 transition-colors"
           >
             <Instagram className="w-5 h-5 mr-2" />
-            Follow us on Instagram
+            {t("portfolioPage.followInstagram")}
             <ExternalLink className="w-4 h-4 ml-2 opacity-70" />
           </motion.a>
         </div>

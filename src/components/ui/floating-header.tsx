@@ -165,7 +165,7 @@ export function FloatingHeader() {
 											lang === 'EN' ? "bg-white shadow-sm text-[#2e5da0]" : "text-gray-500 hover:text-gray-700"
 										)}
 									>
-										English
+										{t('nav.english')}
 									</button>
 									<button 
 										onClick={() => handleLangChange('FR')}
@@ -174,7 +174,7 @@ export function FloatingHeader() {
 											lang === 'FR' ? "bg-white shadow-sm text-[#2e5da0]" : "text-gray-500 hover:text-gray-700"
 										)}
 									>
-										Français
+										{t('nav.french')}
 									</button>
 								</div>
 								<Link 

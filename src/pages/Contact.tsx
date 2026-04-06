@@ -114,15 +114,15 @@ export default function Contact() {
                 <div className="bg-green-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-green-500">
                   <CheckCircle2 className="w-12 h-12" />
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Message Sent!</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('contactPage.successTitle')}</h2>
                 <p className="text-lg text-gray-600 mb-8">
-                  Thank you for reaching out. We'll get back to you as soon as possible.
+                  {t('contactPage.successMessage')}
                 </p>
                 <button 
                   onClick={() => setIsSuccess(false)}
                   className="text-blue-600 font-bold hover:underline"
                 >
-                  Send another message
+                  {t('contactPage.sendAnother')}
                 </button>
               </motion.div>
             ) : (
@@ -133,7 +133,7 @@ export default function Contact() {
                     <input 
                       required
                       type="text" 
-                      placeholder="Jean Francois"
+                      placeholder={t('contactPage.placeholderName')}
                       value={formData.fullName}
                       onChange={(e) => setFormData({...formData, fullName: e.target.value})}
                       className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400"
@@ -155,7 +155,7 @@ export default function Contact() {
                     <input 
                       required
                       type="email" 
-                      placeholder="jean@example.com"
+                      placeholder={t('contactPage.placeholderEmail')}
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                       className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400"
@@ -166,7 +166,7 @@ export default function Contact() {
                     <input 
                       required
                       type="text" 
-                      placeholder="Montreal"
+                      placeholder={t('contactPage.placeholderCity')}
                       value={formData.city}
                       onChange={(e) => setFormData({...formData, city: e.target.value})}
                       className="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400"
@@ -210,7 +210,7 @@ export default function Contact() {
                     {isSubmitting ? (
                       <>
                         <Loader2 className="w-5 h-5 md:w-6 md:h-6 animate-spin" />
-                        Sending...
+                        {t('contactPage.sending')}
                       </>
                     ) : (
                       <>

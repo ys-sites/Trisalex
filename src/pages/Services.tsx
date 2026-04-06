@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Paintbrush, Home, PenTool, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 32 },
@@ -12,35 +13,37 @@ const fadeInUp = {
 };
 
 export default function Services() {
+  const { t } = useTranslation();
+
   const services = [
     {
       icon: <Paintbrush className="w-12 h-12 text-blue-600" />,
-      title: "Interior Painting",
-      description: "Transform your living spaces with our high-end interior painting services. We handle everything from walls and ceilings to intricate trim and doors, using only premium quality paints for a flawless finish.",
+      title: t("servicesPage.items.interior.title"),
+      description: t("servicesPage.items.interior.description"),
       image: "/after1.jpg"
     },
     {
       icon: <Home className="w-12 h-12 text-blue-600" />,
-      title: "Exterior Spray Painting",
-      description: "Boost your home's curb appeal and protect it from the elements. Our exterior spray painting provides a smooth, durable, and weather-resistant finish for siding, brick, stucco, and more.",
+      title: t("servicesPage.items.exterior.title"),
+      description: t("servicesPage.items.exterior.description"),
       image: "/after2.jpg"
     },
     {
       icon: <PenTool className="w-12 h-12 text-blue-600" />,
-      title: "Drywall Repairs & Plastering",
-      description: "Proper preparation is key to a lasting paint job. We offer expert drywall repairs, patching, and plastering to ensure your surfaces are perfectly smooth before the first drop of paint is applied.",
+      title: t("servicesPage.items.drywall.title"),
+      description: t("servicesPage.items.drywall.description"),
       image: "/after4.png"
     },
     {
       icon: <Paintbrush className="w-12 h-12 text-blue-600" />,
-      title: "Commercial Painting",
-      description: "Professional painting services for businesses, offices, and retail spaces in Montreal. We work around your schedule to minimize disruption while delivering high-quality results.",
+      title: t("servicesPage.items.commercial.title"),
+      description: t("servicesPage.items.commercial.description"),
       image: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
     },
     {
       icon: <Home className="w-12 h-12 text-blue-600" />,
-      title: "Staining & Refinishing",
-      description: "Expert staining and refinishing for decks, fences, and wooden surfaces. We use high-quality stains that protect your wood and enhance its natural beauty.",
+      title: t("servicesPage.items.staining.title"),
+      description: t("servicesPage.items.staining.description"),
       image: "/after.jpg"
     }
   ];
@@ -56,10 +59,10 @@ export default function Services() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-            Our Professional Services
+            {t("servicesPage.title")}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive painting and preparation services tailored to meet the highest standards of quality for your Montreal or West Island home.
+            {t("servicesPage.subtitle")}
           </p>
         </motion.div>
 
@@ -91,7 +94,7 @@ export default function Services() {
                   to="/contact"
                   className="inline-flex items-center text-blue-600 font-bold hover:text-blue-800 text-lg"
                 >
-                  Request a quote for this service <ArrowRight className="ml-2 w-5 h-5" />
+                  {t("servicesPage.requestQuote")} <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </div>
             </motion.div>

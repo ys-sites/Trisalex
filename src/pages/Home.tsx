@@ -277,7 +277,7 @@ export default function Home() {
             className="max-w-3xl"
           >
             <motion.div variants={fadeInUp} className="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 mb-6 text-sm font-medium backdrop-blur-sm">
-              <Star className="w-4 h-4 mr-2 fill-current" /> Top Rated Painters in Montreal
+              <Star className="w-4 h-4 mr-2 fill-current" /> {t('home.hero.topRated')}
             </motion.div>
             <motion.h1 variants={fadeInUp} className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
               {t('home.hero.title1')}<br/> <span className="text-blue-400">{t('home.hero.title2')}</span>
@@ -371,7 +371,7 @@ export default function Home() {
 
               <button
                 type="button"
-                aria-label="Previous video"
+                aria-label={t('home.video.previousAria')}
                 onClick={handlePrevMobileVideo}
                 className="absolute left-4 top-1/2 z-20 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-white hover:bg-black/50 transition-colors"
               >
@@ -380,7 +380,7 @@ export default function Home() {
 
               <button
                 type="button"
-                aria-label="Next video"
+                aria-label={t('home.video.nextAria')}
                 onClick={handleNextMobileVideo}
                 className="absolute right-4 top-1/2 z-20 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-white hover:bg-black/50 transition-colors"
               >
@@ -421,15 +421,15 @@ export default function Home() {
               <div className="bg-blue-50 p-5 rounded-2xl mb-6 text-blue-600">
                 <Star className="w-10 h-10 fill-current" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">5.0 Google Rating</h3>
-              <p className="text-gray-600 leading-relaxed">Consistently rated 5 stars by our satisfied customers across Montreal.</p>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">{t('home.features.ratingTitle')}</h3>
+              <p className="text-gray-600 leading-relaxed">{t('home.features.ratingDesc')}</p>
             </motion.div>
             <motion.div variants={fadeInUp} className="flex flex-col items-center text-center p-8 rounded-2xl bg-white shadow-xl shadow-gray-200/50 border border-gray-100 transform transition-transform hover:-translate-y-1">
               <div className="bg-blue-50 p-5 rounded-2xl mb-6 text-blue-600">
                 <ShieldCheck className="w-10 h-10" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">25+ Years Experience</h3>
-              <p className="text-gray-600 leading-relaxed">Family owned and operated, bringing decades of expertise to every job.</p>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">{t('home.features.experienceTitle')}</h3>
+              <p className="text-gray-600 leading-relaxed">{t('home.features.experienceDesc')}</p>
             </motion.div>
             <motion.div variants={fadeInUp} className="flex flex-col items-center text-center p-8 rounded-2xl bg-white shadow-xl shadow-gray-200/50 border border-gray-100 transform transition-transform hover:-translate-y-1">
               <div className="bg-blue-50 p-5 rounded-2xl mb-6 text-blue-600">
@@ -469,7 +469,7 @@ export default function Home() {
               <div className="relative overflow-hidden">
                 <img
                   src="/int.png"
-                  alt="Interior Painting"
+                  alt={t('home.services.interior')}
                   className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                   loading="lazy"
@@ -496,7 +496,7 @@ export default function Home() {
               <div className="relative overflow-hidden">
                 <img
                   src="/ext.jpg"
-                  alt="Exterior Spray Painting"
+                  alt={t('home.services.exterior')}
                   className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                   loading="lazy"
@@ -504,17 +504,17 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="p-10">
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Exterior Spray Painting</h3>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">{t('home.services.exterior')}</h3>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                  Durable, weather-resistant exterior spray painting that boosts curb appeal and protects your home from the Canadian elements.
+                  {t('home.services.exteriorDesc')}
                 </p>
                 <ul className="space-y-3 mb-8">
-                  <li className="flex items-center text-gray-700"><CheckCircle2 className="w-5 h-5 text-blue-500 mr-3" /> Siding, brick & stucco</li>
-                  <li className="flex items-center text-gray-700"><CheckCircle2 className="w-5 h-5 text-blue-500 mr-3" /> Weather-resistant finishes</li>
-                  <li className="flex items-center text-gray-700"><CheckCircle2 className="w-5 h-5 text-blue-500 mr-3" /> Thorough surface prep</li>
+                  <li className="flex items-center text-gray-700"><CheckCircle2 className="w-5 h-5 text-blue-500 mr-3" /> {t('home.services.factory')}</li>
+                  <li className="flex items-center text-gray-700"><CheckCircle2 className="w-5 h-5 text-blue-500 mr-3" /> {t('home.services.weather')}</li>
+                  <li className="flex items-center text-gray-700"><CheckCircle2 className="w-5 h-5 text-blue-500 mr-3" /> {t('home.services.curbAppeal')}</li>
                 </ul>
                 <Link to="/services" className="inline-flex items-center text-blue-600 font-bold hover:text-blue-800 transition-colors">
-                  Learn more <ArrowRight className="w-5 h-5 ml-2" />
+                  {t('home.services.learnMore')} <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </div>
             </motion.div>
@@ -532,9 +532,9 @@ export default function Home() {
             variants={fadeInUp}
             className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6">How It Works</h2>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6">{t('home.process.title')}</h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-              A streamlined process designed to give you complete peace of mind from first click to final walkthrough.
+              {t('home.process.subtitle')}
             </p>
           </motion.div>
           
@@ -551,22 +551,22 @@ export default function Home() {
             {/* Step 1 */}
             <motion.div variants={fadeInUp} className="relative flex flex-col items-center text-center">
               <div className="w-20 h-20 rounded-full bg-[#4a68b1] flex items-center justify-center text-white text-2xl font-bold mb-6 relative z-10 shadow-lg shadow-blue-900/20">1</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Request a Quote</h3>
-              <p className="text-gray-600">Fill out the form below. We'll review your details and contact you within 24 hours.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('home.process.step1')}</h3>
+              <p className="text-gray-600">{t('home.process.step1Desc')}</p>
             </motion.div>
             
             {/* Step 2 */}
             <motion.div variants={fadeInUp} className="relative flex flex-col items-center text-center">
               <div className="w-20 h-20 rounded-full bg-[#4a68b1] flex items-center justify-center text-white text-2xl font-bold mb-6 relative z-10 shadow-lg shadow-blue-900/20">2</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Get a Clear Plan</h3>
-              <p className="text-gray-600">We provide a transparent proposal with exact timelines, materials, and pricing. No guesswork.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('home.process.step2')}</h3>
+              <p className="text-gray-600">{t('home.process.step2Desc')}</p>
             </motion.div>
             
             {/* Step 3 */}
             <motion.div variants={fadeInUp} className="relative flex flex-col items-center text-center">
               <div className="w-20 h-20 rounded-full bg-[#4a68b1] flex items-center justify-center text-white text-2xl font-bold mb-6 relative z-10 shadow-lg shadow-blue-900/20">3</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Enjoy the Result</h3>
-              <p className="text-gray-600">Our team executes flawlessly, cleans up completely, and does a final walkthrough to ensure 100% satisfaction.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('home.process.step3')}</h3>
+              <p className="text-gray-600">{t('home.process.step3Desc')}</p>
             </motion.div>
           </motion.div>
         </div>
@@ -640,9 +640,9 @@ export default function Home() {
             variants={fadeInUp}
             className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6">Our Recent Work</h2>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6">{t('home.portfolio.title')}</h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-              Take a look at some of our recent painting projects across Montreal.
+              {t('home.portfolio.subtitle')}
             </p>
           </motion.div>
           
@@ -654,8 +654,8 @@ export default function Home() {
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-12"
           >
             {[
-              { id: 1, title: "Exterior Renovation Revival", category: "Exterior Renovation", before: "/before.jpg", after: "/after.jpg" },
-              { id: 2, title: "Signature Exterior Paint Refresh", category: "Exterior Paint", before: "/before6.jpg", after: "/after6.jpg" },
+              { id: 1, title: t('home.portfolio.previewItems.0.title'), category: t('home.portfolio.previewItems.0.category'), before: "/before.jpg", after: "/after.jpg" },
+              { id: 2, title: t('home.portfolio.previewItems.1.title'), category: t('home.portfolio.previewItems.1.category'), before: "/before6.jpg", after: "/after6.jpg" },
             ].map((item) => (
               <motion.div key={item.id} variants={fadeInUp} className="flex flex-col">
                 <div className="mb-4">
@@ -709,9 +709,9 @@ export default function Home() {
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/10 text-yellow-300 mb-4">
                 <Star className="w-7 h-7 fill-current" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Enjoyed working with Trisalex?</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">{t('home.testimonials.reviewCtaTitle')}</h3>
               <p className="text-gray-300 mb-6 max-w-xl mx-auto">
-                If we transformed your space, we'd appreciate a quick 5-star Google review. It helps more homeowners find us.
+                {t('home.testimonials.reviewCtaText')}
               </p>
               <a
                 href={googleReviewLink}
@@ -719,7 +719,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full bg-white text-[#1f3f84] px-6 py-3 text-sm font-bold hover:bg-gray-100 transition-colors"
               >
-                Leave a 5-Star Review <ArrowRight className="ml-2 w-4 h-4" />
+                {t('home.testimonials.reviewCtaButton')} <ArrowRight className="ml-2 w-4 h-4" />
               </a>
             </div>
           </motion.div>
