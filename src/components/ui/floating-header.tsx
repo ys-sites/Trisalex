@@ -42,7 +42,7 @@ export function FloatingHeader() {
 	return (
 		<header
 			className={cn(
-				'mx-auto w-full max-w-6xl rounded-full border border-gray-200 shadow-lg',
+				'mx-auto w-full max-w-7xl rounded-full border border-gray-200 shadow-lg',
 				'bg-white/95 supports-[backdrop-filter]:bg-white/90 backdrop-blur-md',
 			)}
 		>
@@ -52,7 +52,7 @@ export function FloatingHeader() {
 					<img 
 						src="/logo.png" 
 						alt="Trisalex Logo" 
-						className="h-16 sm:h-14 md:h-16 w-auto object-contain" 
+						className="h-[4.5rem] sm:h-16 md:h-[4.5rem] w-auto object-contain" 
 						onError={(e) => {
 							e.currentTarget.style.display = 'none';
 							e.currentTarget.nextElementSibling?.classList.remove('hidden');
@@ -73,7 +73,7 @@ export function FloatingHeader() {
 							<Link
 								key={`${link.path}${link.hash ?? ''}`}
 								className={cn(
-									"px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200",
+									"px-4 xl:px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200",
 									isActive 
 										? "bg-[#2e5da0]/15 text-[#2e5da0]" 
 										: "text-gray-600 hover:text-gray-900 hover:bg-gray-200/50"
@@ -113,7 +113,7 @@ export function FloatingHeader() {
 					{/* CTA Button */}
 					<Link 
 						to="/contact" 
-						className="hidden sm:inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#4278c4] to-[#2e5da0] text-white px-6 py-2.5 text-sm font-bold shadow-md hover:shadow-lg transition-all hover:scale-105"
+						className="hidden sm:inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#4278c4] to-[#2e5da0] text-white whitespace-nowrap px-5 xl:px-6 py-2.5 text-sm font-bold shadow-md hover:shadow-lg transition-all hover:scale-105"
 					>
 						{t('nav.getQuote')}
 						<ArrowRight className="w-4 h-4" />
