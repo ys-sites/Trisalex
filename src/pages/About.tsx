@@ -1,17 +1,37 @@
 import { motion } from "motion/react";
 import { CheckCircle2 } from "lucide-react";
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 32 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.14
+    }
+  }
+};
+
 export default function About() {
   return (
     <div className="py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
         >
-          <div>
+          <motion.div variants={fadeInUp}>
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
               About Trisalex
             </h1>
@@ -37,9 +57,9 @@ export default function About() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
           
-          <div className="relative hidden lg:block">
+          <motion.div variants={fadeInUp} className="relative hidden lg:block">
             <div className="aspect-w-4 aspect-h-5 rounded-2xl overflow-hidden shadow-xl">
               <img
                 src="/main.jpg"
@@ -51,7 +71,7 @@ export default function About() {
               <p className="text-4xl font-extrabold mb-2">25+</p>
               <p className="text-blue-100 font-medium">Years of<br/>Experience</p>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </div>

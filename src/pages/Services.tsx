@@ -2,6 +2,15 @@ import { motion } from "motion/react";
 import { Paintbrush, Home, PenTool, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 32 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] }
+  }
+};
+
 export default function Services() {
   const services = [
     {
@@ -39,23 +48,29 @@ export default function Services() {
   return (
     <div className="py-16 md:py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+          className="text-center mb-16"
+        >
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
             Our Professional Services
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Comprehensive painting and preparation services tailored to meet the highest standards of quality for your Montreal or West Island home.
           </p>
-        </div>
+        </motion.div>
 
         <div className="space-y-24">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
               className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 items-center`}
             >
               <div className="w-full lg:w-1/2">

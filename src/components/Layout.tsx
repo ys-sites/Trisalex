@@ -25,8 +25,23 @@ export default function Layout() {
   }, []);
 
   useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.slice(1);
+      const scrollToHashTarget = () => {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "auto", block: "start" });
+          return;
+        }
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      };
+
+      requestAnimationFrame(scrollToHashTarget);
+      return;
+    }
+
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   const navLinks = [
     { name: t('nav.home'), path: "/" },

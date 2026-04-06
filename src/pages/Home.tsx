@@ -239,7 +239,7 @@ export default function Home() {
           </div>
           <span className="text-white text-sm font-medium truncate">{vid.title}</span>
         </div>
-        <span className="bg-white/20 hover:bg-white/30 transition-colors text-white text-[10px] sm:text-xs font-medium px-3 py-1.5 rounded-full flex-shrink-0">
+        <span className={`bg-white/20 hover:bg-white/30 transition-colors text-white text-[10px] sm:text-xs font-medium px-3 py-1.5 rounded-full flex-shrink-0 ${isMobile ? "hidden" : ""}`}>
           {t('home.video.viewInstagram')}
         </span>
       </div>
@@ -578,7 +578,7 @@ export default function Home() {
           <img 
             src="/about.jpg" 
             alt="Professional Painter" 
-            className="trisalex-about-image absolute inset-0 w-full h-full object-cover"
+            className="trisalex-about-image absolute inset-0 w-full h-full object-cover object-[68%_center] lg:object-center"
           />
         </div>
         <div className="lg:w-1/2 p-8 md:p-12 lg:p-24 flex flex-col justify-center">
@@ -683,7 +683,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-[#0a0a0a]">
+      <section id="testimonials" className="py-16 md:py-24 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial="hidden"

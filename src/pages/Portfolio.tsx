@@ -3,8 +3,12 @@ import { Instagram, ExternalLink } from "lucide-react";
 import { BeforeAfterSlider } from "../components/BeforeAfterSlider";
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  hidden: { opacity: 0, y: 32 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] }
+  }
 };
 
 const staggerContainer = {
@@ -75,26 +79,29 @@ export default function Portfolio() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.h1 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
             className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6"
           >
             Before & After Projects
           </motion.h1>
           <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
             className="text-xl text-gray-600 max-w-3xl mx-auto mb-8"
           >
             Browse the full gallery of recent Trisalex transformations across Montreal and the West Island, with the same before-and-after comparisons previously shown on the home page.
           </motion.p>
           
           <motion.a 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
             href="https://www.instagram.com/trisalexpainting/"
             target="_blank"
             rel="noopener noreferrer"
@@ -109,7 +116,8 @@ export default function Portfolio() {
         <motion.div 
           variants={staggerContainer}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12"
         >
           {beforeAfterItems.map((item) => (

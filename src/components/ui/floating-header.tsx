@@ -6,6 +6,12 @@ import { cn } from '../../lib/utils';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+type NavLink = {
+	name: string;
+	path: string;
+	hash?: string;
+};
+
 export function FloatingHeader() {
 	const [open, setOpen] = React.useState(false);
 	const { t, i18n } = useTranslation();
@@ -24,11 +30,12 @@ export function FloatingHeader() {
 		i18n.changeLanguage(newLang.toLowerCase());
 	};
 
-	const links = [
+	const links: NavLink[] = [
 		{ name: t('nav.home'), path: '/' },
 		{ name: t('nav.about'), path: '/about' },
 		{ name: t('nav.services'), path: '/services' },
 		{ name: t('nav.portfolio'), path: '/portfolio' },
+		{ name: t('nav.testimonials'), path: '/', hash: '#testimonials' },
 		{ name: t('nav.contact'), path: '/contact' },
 	];
 
@@ -43,9 +50,9 @@ export function FloatingHeader() {
 				{/* Logo Section */}
 				<Link to="/" className="flex items-center gap-3 px-2 hover:opacity-90 transition-opacity">
 					<img 
-						src="/logo.png" 
+						src="/logo.svg" 
 						alt="Trisalex Logo" 
-						className="h-12 w-auto object-contain" 
+						className="h-16 sm:h-14 md:h-16 w-auto object-contain" 
 						onError={(e) => {
 							e.currentTarget.style.display = 'none';
 							e.currentTarget.nextElementSibling?.classList.remove('hidden');
@@ -59,17 +66,19 @@ export function FloatingHeader() {
 				{/* Desktop Navigation */}
 				<div className="hidden lg:flex items-center gap-1 bg-gray-50/80 border border-gray-100 p-1.5 rounded-full">
 					{links.map((link) => {
-						const isActive = location.pathname === link.path;
+						const isActive = link.hash
+							? location.pathname === link.path && location.hash === link.hash
+							: location.pathname === link.path && !location.hash;
 						return (
 							<Link
-								key={link.path}
+								key={`${link.path}${link.hash ?? ''}`}
 								className={cn(
 									"px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200",
 									isActive 
 										? "bg-[#2e5da0]/15 text-[#2e5da0]" 
 										: "text-gray-600 hover:text-gray-900 hover:bg-gray-200/50"
 								)}
-								to={link.path}
+								to={{ pathname: link.path, hash: link.hash }}
 							>
 								{link.name}
 							</Link>
@@ -128,15 +137,19 @@ export function FloatingHeader() {
 							<div className="grid gap-y-2 overflow-y-auto px-4 pt-12 pb-5">
 								{links.map((link) => (
 									<Link
-										key={link.path}
+										key={`${link.path}${link.hash ?? ''}`}
 										className={cn(
 											buttonVariants({
 												variant: 'ghost',
 												className: 'justify-start text-lg py-6 rounded-xl',
 											}),
-											location.pathname === link.path ? 'bg-[#2e5da0]/10 text-[#2e5da0] font-bold' : 'text-gray-600 font-medium'
+											(link.hash
+												? location.pathname === link.path && location.hash === link.hash
+												: location.pathname === link.path && !location.hash)
+													? 'bg-[#2e5da0]/10 text-[#2e5da0] font-bold'
+													: 'text-gray-600 font-medium'
 										)}
-										to={link.path}
+										to={{ pathname: link.path, hash: link.hash }}
 										onClick={() => setOpen(false)}
 									>
 										{link.name}
