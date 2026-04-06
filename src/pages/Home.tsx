@@ -25,6 +25,7 @@ type VideoItem = {
   id: number;
   title: string;
   src: string;
+  poster: string;
 };
 
 export default function Home() {
@@ -35,15 +36,14 @@ export default function Home() {
   const [mobileVideoIndex, setMobileVideoIndex] = useState(0);
 
   const videoItems: VideoItem[] = [
-    { id: 1, title: "Trisalex Painting", src: "/vid1.mp4" },
-    { id: 2, title: "Trisalex Painting", src: "/vid2.mp4" },
-    { id: 3, title: "Trisalex Painting", src: "/vid3.mp4" }
+    { id: 1, title: "Trisalex Painting", src: "/vid1.mp4", poster: "/after1.jpg" },
+    { id: 2, title: "Trisalex Painting", src: "/vid2.mp4", poster: "/after2.jpg" },
+    { id: 3, title: "Trisalex Painting", src: "/vid3.mp4", poster: "/after4.png" }
   ];
 
-  const setVideoPreviewFrame = (video: HTMLVideoElement) => {
-    const previewTime = Number.isFinite(video.duration) && video.duration > 1 ? 1 : 0;
+  const resetVideoToStart = (video: HTMLVideoElement) => {
     video.pause();
-    video.currentTime = previewTime;
+    video.currentTime = 0;
   };
 
   const handleVideoLoadedData = (id: number) => {
@@ -52,7 +52,7 @@ export default function Home() {
       return;
     }
 
-    setVideoPreviewFrame(video);
+    resetVideoToStart(video);
   };
 
   const handleVideoClick = async (id: number) => {
@@ -67,7 +67,7 @@ export default function Home() {
       if (!video || keyAsNumber === id) {
         continue;
       }
-      setVideoPreviewFrame(video);
+      resetVideoToStart(video);
     }
 
     if (selectedVideo.paused) {
@@ -79,7 +79,7 @@ export default function Home() {
         setActiveVideoId(null);
       }
     } else {
-      setVideoPreviewFrame(selectedVideo);
+      resetVideoToStart(selectedVideo);
       setActiveVideoId(null);
     }
   };
@@ -91,7 +91,7 @@ export default function Home() {
       if (!video) {
         continue;
       }
-      setVideoPreviewFrame(video);
+      resetVideoToStart(video);
     }
     setActiveVideoId(null);
   };
@@ -106,7 +106,7 @@ export default function Home() {
     setMobileVideoIndex((prev: number) => (prev + 1) % videoItems.length);
   };
 
-  const renderVideoCard = (vid: VideoItem, refId: number) => (
+  const renderVideoCard = (vid: VideoItem, refId: number, isMobile = false) => (
     <motion.div
       key={`${refId}-${vid.id}`}
       variants={fadeInUp}
@@ -115,20 +115,27 @@ export default function Home() {
     >
       <video
         src={vid.src}
+        poster={vid.poster}
         ref={(el: HTMLVideoElement | null) => {
           videoRefs.current[refId] = el;
         }}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        className={`block w-full h-full object-cover bg-black ${isMobile ? "" : "transition-transform duration-700 group-hover:scale-105"}`}
+        controls={isMobile && activeVideoId === refId}
         playsInline
-        preload="auto"
+        preload={isMobile ? "metadata" : "auto"}
         onLoadedData={() => handleVideoLoadedData(refId)}
+        onPlay={() => setActiveVideoId(refId)}
+        onPause={() => {
+          setActiveVideoId((current) => (current === refId ? null : current));
+        }}
+        style={{ WebkitTransform: "translateZ(0)", backfaceVisibility: "hidden" }}
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+      <div className={`absolute inset-0 transition-colors duration-300 ${activeVideoId === refId ? "bg-transparent" : "bg-black/20 group-hover:bg-black/10"}`}></div>
 
       {/* Top Bar (Glassmorphism) */}
-      <div className="absolute top-4 left-4 right-4 flex items-center justify-between bg-black/40 backdrop-blur-md rounded-2xl p-2 pr-3 border border-white/10">
+      <div className={`absolute top-4 left-4 right-4 flex items-center justify-between bg-black/40 backdrop-blur-md rounded-2xl p-2 pr-3 border border-white/10 transition-opacity duration-300 ${activeVideoId === refId && isMobile ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
         <div className="flex items-center space-x-3 overflow-hidden">
           {/* Instagram Story Ring with Logo */}
           <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 p-[2px] flex-shrink-0">
@@ -269,7 +276,7 @@ export default function Home() {
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
-            {renderVideoCard(videoItems[mobileVideoIndex], videoItems[mobileVideoIndex].id + 100)}
+            {renderVideoCard(videoItems[mobileVideoIndex], videoItems[mobileVideoIndex].id + 100, true)}
           </motion.div>
 
           <motion.div

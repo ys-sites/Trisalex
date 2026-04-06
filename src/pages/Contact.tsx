@@ -57,38 +57,29 @@ export default function Contact() {
     }
   };
 
-  const bgImages = [
-    "/after.jpg",
-    "/after1.jpg",
-    "/after2.jpg",
-    "/after4.png",
-    "/after5.jpg",
-    "/after6.jpg",
-    "/after7.jpg",
-    "/after8.jpg",
-    "/after9.jpg"
-  ];
-
-  // Create a very dense repeated grid for the "seamless row" look
-  const gridImages = Array.from({ length: 100 }, (_, i) => bgImages[i % bgImages.length]);
-
   return (
-    <div className="relative min-h-screen pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-white">
-      {/* Seamless Background Grid (Blurred project mosaic) */}
-      <div className="absolute inset-0 z-0 grid grid-cols-4 md:grid-cols-7 lg:grid-cols-9 auto-rows-fr group/grid bg-white">
-        {gridImages.map((src, i) => (
-          <div key={i} className="relative aspect-square overflow-hidden">
-            <img 
-              src={src}
-              alt=""
-              className="relative z-0 h-full w-full cursor-pointer object-cover scale-105 blur-[10px] opacity-45 brightness-110 saturate-75 transition-all duration-700 ease-out group-hover/grid:scale-100 group-hover/grid:blur-[12px] group-hover/grid:opacity-25 group-hover/grid:saturate-50 hover:!z-20 hover:!scale-110 hover:!blur-0 hover:!opacity-100 hover:!brightness-100 hover:!saturate-100"
-            />
-            <div className="pointer-events-none absolute inset-0 z-10 bg-white/60 transition-opacity duration-700 ease-out group-hover/grid:opacity-70 hover:!opacity-0"></div>
-          </div>
-        ))}
+    <div className="relative min-h-screen pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-[radial-gradient(circle_at_top,#f8fbff_0%,#eef4ff_35%,#ffffff_72%)]">
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <motion.div
+          aria-hidden="true"
+          animate={{ x: [0, 36, 0], y: [0, -24, 0], scale: [1, 1.08, 1] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-20 left-[8%] h-72 w-72 rounded-full bg-blue-200/35 blur-3xl"
+        />
+        <motion.div
+          aria-hidden="true"
+          animate={{ x: [0, -28, 0], y: [0, 32, 0], scale: [1.05, 0.96, 1.05] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-[22%] right-[10%] h-80 w-80 rounded-full bg-sky-100/55 blur-3xl"
+        />
+        <motion.div
+          aria-hidden="true"
+          animate={{ x: [0, 22, 0], y: [0, 18, 0], rotate: [0, 8, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="absolute bottom-[-4rem] left-[22%] h-64 w-64 rounded-full bg-indigo-100/45 blur-3xl"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(46,93,160,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(46,93,160,0.05)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(circle_at_center,black,transparent_82%)]"></div>
       </div>
-      
-      <div className="absolute inset-0 bg-white/35 pointer-events-none z-[1]"></div>
 
       <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -117,7 +108,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-1 space-y-6"
           >
-            <div className="bg-white/90 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-gray-100">
+            <div className="bg-white/92 backdrop-blur-md p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-white/80">
               <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
                 <Phone className="w-6 h-6" />
               </div>
@@ -125,7 +116,7 @@ export default function Contact() {
               <p className="text-gray-600 font-medium">(514) 707-6123</p>
             </div>
 
-            <div className="bg-white/90 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-gray-100">
+            <div className="bg-white/92 backdrop-blur-md p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-white/80">
               <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
                 <MapPin className="w-6 h-6" />
               </div>
@@ -133,7 +124,7 @@ export default function Contact() {
               <p className="text-gray-600 font-medium">20 Rue du Curé-Trottier<br/>Kirkland, QC H9J 1K4</p>
             </div>
 
-            <div className="bg-white/90 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-gray-100">
+            <div className="bg-white/92 backdrop-blur-md p-8 rounded-3xl shadow-[0_24px_60px_rgba(148,163,184,0.18)] border border-white/80">
               <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
                 <Clock className="w-6 h-6" />
               </div>
@@ -148,7 +139,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             id="contact-form"
-            className="lg:col-span-2 bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
+            className="lg:col-span-2 bg-white/94 backdrop-blur-xl rounded-3xl shadow-[0_32px_80px_rgba(148,163,184,0.22)] p-8 md:p-12 border border-white/90"
           >
             {isSuccess ? (
               <motion.div 

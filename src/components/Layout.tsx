@@ -82,7 +82,7 @@ export default function Layout() {
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-12 mb-12">
             <div>
               <div className="flex items-center mb-6">
                 <img 
@@ -103,38 +103,40 @@ export default function Layout() {
                 {t('footer.description')}
               </p>
             </div>
-            
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-6">{t('footer.quickLinks')}</h3>
-              <ul className="space-y-3">
-                {navLinks.map((link) => (
-                  <li key={link.path}>
-                    <Link to={link.path} className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
-                      {link.name}
-                    </Link>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 mb-6">{t('footer.quickLinks')}</h3>
+                <ul className="space-y-3">
+                  {navLinks.map((link) => (
+                    <li key={link.path}>
+                      <Link to={link.path} className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 mb-6">{t('footer.contactUs')}</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-gray-600 font-medium">20 Rue du Curé-Trottier<br />Kirkland, QC H9J 1K4</span>
                   </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-6">{t('footer.contactUs')}</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-1 flex-shrink-0" />
-                  <span className="text-gray-600 font-medium">20 Rue du Curé-Trottier<br />Kirkland, QC H9J 1K4</span>
-                </li>
-                <li className="flex items-center">
-                  <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                  <span className="text-gray-600 font-medium">{phoneNumber}</span>
-                </li>
-                <li className="flex items-center">
-                  <Instagram className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                  <a href="https://www.instagram.com/trisalexpainting/" target="_blank" rel="noopener noreferrer" className="text-gray-600 font-medium hover:text-blue-600 transition-colors">
-                    @trisalexpainting
-                  </a>
-                </li>
-              </ul>
+                  <li className="flex items-center">
+                    <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                    <span className="text-gray-600 font-medium">{phoneNumber}</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Instagram className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                    <a href="https://www.instagram.com/trisalexpainting/" target="_blank" rel="noopener noreferrer" className="text-gray-600 font-medium hover:text-blue-600 transition-colors">
+                      @trisalexpainting
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
           

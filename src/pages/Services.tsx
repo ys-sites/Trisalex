@@ -26,13 +26,13 @@ export default function Services() {
       icon: <Paintbrush className="w-12 h-12 text-blue-600" />,
       title: "Commercial Painting",
       description: "Professional painting services for businesses, offices, and retail spaces in Montreal. We work around your schedule to minimize disruption while delivering high-quality results.",
-      image: "/after.jpg"
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
     },
     {
       icon: <Home className="w-12 h-12 text-blue-600" />,
       title: "Staining & Refinishing",
       description: "Expert staining and refinishing for decks, fences, and wooden surfaces. We use high-quality stains that protect your wood and enhance its natural beauty.",
-      image: "https://images.unsplash.com/photo-1595844730298-b960ff98fee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/after.jpg"
     }
   ];
 
